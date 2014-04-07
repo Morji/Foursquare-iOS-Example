@@ -15,7 +15,7 @@
 		C3575A5518F28BD3002B2F33 /* XDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575A5418F28BD3002B2F33 /* XDAppDelegate.m */; };
 		C3575A5818F28BD3002B2F33 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3575A5618F28BD3002B2F33 /* Main_iPhone.storyboard */; };
 		C3575A5B18F28BD3002B2F33 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3575A5918F28BD3002B2F33 /* Main_iPad.storyboard */; };
-		C3575A5E18F28BD3002B2F33 /* XDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575A5D18F28BD3002B2F33 /* XDViewController.m */; };
+		C3575A5E18F28BD3002B2F33 /* XDVContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575A5D18F28BD3002B2F33 /* XDVContainerViewController.m */; };
 		C3575A6018F28BD3002B2F33 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3575A5F18F28BD3002B2F33 /* Images.xcassets */; };
 		C3575A6718F28BD3002B2F33 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3575A6618F28BD3002B2F33 /* XCTest.framework */; };
 		C3575A6818F28BD3002B2F33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3575A4418F28BD3002B2F33 /* Foundation.framework */; };
@@ -28,6 +28,8 @@
 		C3575A8718F28F3E002B2F33 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3575A8618F28F3E002B2F33 /* Security.framework */; };
 		C3575A8918F28F48002B2F33 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3575A8818F28F48002B2F33 /* MobileCoreServices.framework */; };
 		C3575AA218F2933E002B2F33 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3575AA118F2933E002B2F33 /* MapKit.framework */; };
+		C3575AA818F2A882002B2F33 /* XDMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575AA718F2A882002B2F33 /* XDMapViewController.m */; };
+		C3575AAB18F2B430002B2F33 /* XDTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575AAA18F2B430002B2F33 /* XDTableViewController.m */; };
 		EF6AEF2525C54DC4A65D5C6F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A6D2602DC144BC791FD1C95 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -56,8 +58,8 @@
 		C3575A5418F28BD3002B2F33 /* XDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDAppDelegate.m; sourceTree = "<group>"; };
 		C3575A5718F28BD3002B2F33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		C3575A5A18F28BD3002B2F33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		C3575A5C18F28BD3002B2F33 /* XDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDViewController.h; sourceTree = "<group>"; };
-		C3575A5D18F28BD3002B2F33 /* XDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDViewController.m; sourceTree = "<group>"; };
+		C3575A5C18F28BD3002B2F33 /* XDVContainerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDVContainerViewController.h; sourceTree = "<group>"; };
+		C3575A5D18F28BD3002B2F33 /* XDVContainerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDVContainerViewController.m; sourceTree = "<group>"; };
 		C3575A5F18F28BD3002B2F33 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C3575A6518F28BD3002B2F33 /* Foursquare Example BriefTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Foursquare Example BriefTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3575A6618F28BD3002B2F33 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -70,6 +72,10 @@
 		C3575A8618F28F3E002B2F33 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C3575A8818F28F48002B2F33 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C3575AA118F2933E002B2F33 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		C3575AA618F2A882002B2F33 /* XDMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDMapViewController.h; sourceTree = "<group>"; };
+		C3575AA718F2A882002B2F33 /* XDMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDMapViewController.m; sourceTree = "<group>"; };
+		C3575AA918F2B430002B2F33 /* XDTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDTableViewController.h; sourceTree = "<group>"; };
+		C3575AAA18F2B430002B2F33 /* XDTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,12 +148,11 @@
 		C3575A4A18F28BD3002B2F33 /* Foursquare Example Brief */ = {
 			isa = PBXGroup;
 			children = (
+				C3575AA518F2A801002B2F33 /* View Controllers */,
 				C3575A5318F28BD3002B2F33 /* XDAppDelegate.h */,
 				C3575A5418F28BD3002B2F33 /* XDAppDelegate.m */,
 				C3575A5618F28BD3002B2F33 /* Main_iPhone.storyboard */,
 				C3575A5918F28BD3002B2F33 /* Main_iPad.storyboard */,
-				C3575A5C18F28BD3002B2F33 /* XDViewController.h */,
-				C3575A5D18F28BD3002B2F33 /* XDViewController.m */,
 				C3575A5F18F28BD3002B2F33 /* Images.xcassets */,
 				C3575A4B18F28BD3002B2F33 /* Supporting Files */,
 			);
@@ -182,6 +187,19 @@
 				C3575A6F18F28BD3002B2F33 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C3575AA518F2A801002B2F33 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C3575A5C18F28BD3002B2F33 /* XDVContainerViewController.h */,
+				C3575A5D18F28BD3002B2F33 /* XDVContainerViewController.m */,
+				C3575AA618F2A882002B2F33 /* XDMapViewController.h */,
+				C3575AA718F2A882002B2F33 /* XDMapViewController.m */,
+				C3575AA918F2B430002B2F33 /* XDTableViewController.h */,
+				C3575AAA18F2B430002B2F33 /* XDTableViewController.m */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,8 +345,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3575A5518F28BD3002B2F33 /* XDAppDelegate.m in Sources */,
+				C3575AA818F2A882002B2F33 /* XDMapViewController.m in Sources */,
 				C3575A5118F28BD3002B2F33 /* main.m in Sources */,
-				C3575A5E18F28BD3002B2F33 /* XDViewController.m in Sources */,
+				C3575A5E18F28BD3002B2F33 /* XDVContainerViewController.m in Sources */,
+				C3575AAB18F2B430002B2F33 /* XDTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

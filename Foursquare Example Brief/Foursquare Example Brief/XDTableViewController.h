@@ -1,5 +1,5 @@
 //
-//  XDViewController.h
+//  XDTableViewController.h
 //  Foursquare Example Brief
 //
 //  Created by Valentin Hinov on 07/04/2014.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XDViewController : UIViewController
+@interface XDTableViewController : UIViewController
 
 @end
