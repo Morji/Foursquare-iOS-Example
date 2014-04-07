@@ -29,7 +29,10 @@
 		C3575A8918F28F48002B2F33 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3575A8818F28F48002B2F33 /* MobileCoreServices.framework */; };
 		C3575AA218F2933E002B2F33 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3575AA118F2933E002B2F33 /* MapKit.framework */; };
 		C3575AA818F2A882002B2F33 /* XDMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575AA718F2A882002B2F33 /* XDMapViewController.m */; };
-		C3575AAB18F2B430002B2F33 /* XDTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575AAA18F2B430002B2F33 /* XDTableViewController.m */; };
+		C3575AAB18F2B430002B2F33 /* XDVenueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575AAA18F2B430002B2F33 /* XDVenueListViewController.m */; };
+		C3575AAF18F2B85E002B2F33 /* VenueTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575AAE18F2B85E002B2F33 /* VenueTableViewCell.m */; };
+		C3575AB218F2C3A9002B2F33 /* VenueRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575AB118F2C3A9002B2F33 /* VenueRatingView.m */; };
+		C3575AB618F2DC37002B2F33 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575AB518F2DC37002B2F33 /* SWRevealViewController.m */; };
 		EF6AEF2525C54DC4A65D5C6F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A6D2602DC144BC791FD1C95 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -74,8 +77,14 @@
 		C3575AA118F2933E002B2F33 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C3575AA618F2A882002B2F33 /* XDMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDMapViewController.h; sourceTree = "<group>"; };
 		C3575AA718F2A882002B2F33 /* XDMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDMapViewController.m; sourceTree = "<group>"; };
-		C3575AA918F2B430002B2F33 /* XDTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDTableViewController.h; sourceTree = "<group>"; };
-		C3575AAA18F2B430002B2F33 /* XDTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDTableViewController.m; sourceTree = "<group>"; };
+		C3575AA918F2B430002B2F33 /* XDVenueListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDVenueListViewController.h; sourceTree = "<group>"; };
+		C3575AAA18F2B430002B2F33 /* XDVenueListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDVenueListViewController.m; sourceTree = "<group>"; };
+		C3575AAD18F2B85E002B2F33 /* VenueTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueTableViewCell.h; sourceTree = "<group>"; };
+		C3575AAE18F2B85E002B2F33 /* VenueTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueTableViewCell.m; sourceTree = "<group>"; };
+		C3575AB018F2C3A9002B2F33 /* VenueRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueRatingView.h; sourceTree = "<group>"; };
+		C3575AB118F2C3A9002B2F33 /* VenueRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueRatingView.m; sourceTree = "<group>"; };
+		C3575AB418F2DC37002B2F33 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		C3575AB518F2DC37002B2F33 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +157,8 @@
 		C3575A4A18F28BD3002B2F33 /* Foursquare Example Brief */ = {
 			isa = PBXGroup;
 			children = (
+				C3575AB318F2DC08002B2F33 /* Dependencies */,
+				C3575AAC18F2B82C002B2F33 /* Views */,
 				C3575AA518F2A801002B2F33 /* View Controllers */,
 				C3575A5318F28BD3002B2F33 /* XDAppDelegate.h */,
 				C3575A5418F28BD3002B2F33 /* XDAppDelegate.m */,
@@ -196,10 +207,30 @@
 				C3575A5D18F28BD3002B2F33 /* XDVContainerViewController.m */,
 				C3575AA618F2A882002B2F33 /* XDMapViewController.h */,
 				C3575AA718F2A882002B2F33 /* XDMapViewController.m */,
-				C3575AA918F2B430002B2F33 /* XDTableViewController.h */,
-				C3575AAA18F2B430002B2F33 /* XDTableViewController.m */,
+				C3575AA918F2B430002B2F33 /* XDVenueListViewController.h */,
+				C3575AAA18F2B430002B2F33 /* XDVenueListViewController.m */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		C3575AAC18F2B82C002B2F33 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C3575AAD18F2B85E002B2F33 /* VenueTableViewCell.h */,
+				C3575AAE18F2B85E002B2F33 /* VenueTableViewCell.m */,
+				C3575AB018F2C3A9002B2F33 /* VenueRatingView.h */,
+				C3575AB118F2C3A9002B2F33 /* VenueRatingView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		C3575AB318F2DC08002B2F33 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				C3575AB418F2DC37002B2F33 /* SWRevealViewController.h */,
+				C3575AB518F2DC37002B2F33 /* SWRevealViewController.m */,
+			);
+			name = Dependencies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,8 +378,11 @@
 				C3575A5518F28BD3002B2F33 /* XDAppDelegate.m in Sources */,
 				C3575AA818F2A882002B2F33 /* XDMapViewController.m in Sources */,
 				C3575A5118F28BD3002B2F33 /* main.m in Sources */,
+				C3575AB618F2DC37002B2F33 /* SWRevealViewController.m in Sources */,
 				C3575A5E18F28BD3002B2F33 /* XDVContainerViewController.m in Sources */,
-				C3575AAB18F2B430002B2F33 /* XDTableViewController.m in Sources */,
+				C3575AAF18F2B85E002B2F33 /* VenueTableViewCell.m in Sources */,
+				C3575AB218F2C3A9002B2F33 /* VenueRatingView.m in Sources */,
+				C3575AAB18F2B430002B2F33 /* XDVenueListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

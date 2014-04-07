@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XDTableViewController : UIViewController
+@interface XDVenueListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end
