@@ -11,15 +11,15 @@
 
 @interface XDVenueListViewController ()
 
-@property (strong, nonatomic) NSArray *names;
-@property (strong, nonatomic) NSArray *distances;
-@property (strong, nonatomic) NSArray *addresses;
-@property (strong, nonatomic) NSArray *types;
-@property (strong, nonatomic) NSArray *scores;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) FoursquareModelObject *model;
+
 
 @end
 
 @implementation XDVenueListViewController
+
+@synthesize model;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,17 +34,18 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.names = @[@"Subway", @"Pizza Hut", @"Dominos"];
-    self.distances = @[@0.3, @0.5, @0.7];
-    self.addresses = @[@"15 Simpsons Road", @"16 Simpsons Road", @"17 Simpsons Road"];
-    self.types = @[@"Sandwhich Shop", @"Pizza Place", @"Pizza Place"];
-    self.scores = @[@2.5, @5.6, @8.9];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setModelObject:(FoursquareModelObject *)modelObject {
+    model = modelObject;
+    [self.tableView reloadData];
+    
 }
 
 #pragma mark - Table View Creation
@@ -54,21 +55,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.names count];
+    return model != nil ? [model.venueObjects count] : 0;
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"VenueCell";
     VenueTableViewCell *cell = (VenueTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    cell.name.text = [self.names objectAtIndex:[indexPath row]];
-    cell.address.text = [self.addresses objectAtIndex:[indexPath row]];
-    cell.type.text = [self.types objectAtIndex:[indexPath row]];
     
-    NSNumber *distance = [self.distances objectAtIndex:[indexPath row]];
-    cell.distance.text = [NSString stringWithFormat:@"(%@ %@)", [distance stringValue], NSLocalizedString(@"miles", nil)];
-    
-    NSNumber *score = [self.scores objectAtIndex:[indexPath row]];
-    [cell.rating setRating:score];
+    [cell setVenueObject:[model.venueObjects objectAtIndex:indexPath.row]];
     
     return cell;
 }

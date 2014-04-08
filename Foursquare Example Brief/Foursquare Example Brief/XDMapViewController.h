@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FoursquareModelObject.h"
+
+#define DEFAULT_LATITUDE 55.947367
+#define DEFAULT_LONGITUDE -3.214507
 
 @interface XDMapViewController : UIViewController
 
 - (void)centerMapOnDefaultCoords;
+- (void)setModelObject:(FoursquareModelObject *)modelObject;
 
 @end

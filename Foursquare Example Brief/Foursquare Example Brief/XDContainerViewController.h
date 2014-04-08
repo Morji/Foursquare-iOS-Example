@@ -10,6 +10,6 @@
 
 // This view controller will contain the map and list view controllers
 
-@interface XDVContainerViewController : UIViewController
+@interface XDContainerViewController : UIViewController
 
 @end

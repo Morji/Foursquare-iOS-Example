@@ -7,14 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "VenueRatingView.h"
+
+@class VenueRatingView;
+@class VenueObject;
 
 @interface VenueTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *name;
-@property (weak, nonatomic) IBOutlet UILabel *address;
-@property (weak, nonatomic) IBOutlet UILabel *distance;
-@property (weak, nonatomic) IBOutlet UILabel *type;
-@property (weak, nonatomic) IBOutlet VenueRatingView *rating;
+- (void)setVenueObject:(VenueObject *) venueObject;
 
 @end

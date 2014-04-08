@@ -51,7 +51,7 @@
         self.color = [UIColor colorWithRed:0.0f green:0.89f blue:0.0f alpha:1.0f];
     }   
     
-    self.ratingLabel.text = [score stringValue];
+    self.ratingLabel.text = [NSString stringWithFormat:@"%.1f", scoreValue];
     // force redraw
     [self setNeedsDisplay];
     
