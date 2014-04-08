@@ -39,17 +39,17 @@
     [self setupFetchedResultsController];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 - (void)setupFetchedResultsController {
-    
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Venue"];
-    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"location.distance" ascending:YES];
-    fetchRequest.sortDescriptors = @[descriptor];
+    NSPredicate *categoryPredicate = [NSPredicate predicateWithFormat:@"group.explore.query == %@", @"coffee"];
+    fetchRequest.predicate = categoryPredicate;
+    NSSortDescriptor *distanceDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"location.distance" ascending:YES];
+    fetchRequest.sortDescriptors = @[distanceDescriptor];
     
     // Setup fetched results
     fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
@@ -63,13 +63,15 @@
 - (void)refreshTable {
     NSError *error = nil;
     BOOL fetchSuccessful = [fetchedResultsController performFetch:&error];
-    NSAssert([[fetchedResultsController fetchedObjects] count], @"Fetching unsuccessful");
+    BOOL hasObjects = [fetchedResultsController fetchedObjects].count > 0;
     if (!fetchSuccessful) {
         [XDUtilities showAlert:@"Venue List Error" withMessage:error.description];
     }
-    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"LastUpdatedAt"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    [self.tableView reloadData];
+    if (hasObjects) {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"LastUpdatedAt"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [self.tableView reloadData];
+    }
 }
 
 #pragma mark - Table View Creation
@@ -80,7 +82,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     id<NSFetchedResultsSectionInfo> sectionInfo = [fetchedResultsController.sections objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
+    NSUInteger numberOfObjects = [sectionInfo numberOfObjects];
+    return numberOfObjects;
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -94,10 +97,10 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     NSDate *lastUpdatedAt = [[NSUserDefaults standardUserDefaults] objectForKey:@"LastUpdatedAt"];
     NSString *dateString = [NSDateFormatter localizedStringFromDate:lastUpdatedAt dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterMediumStyle];
-    if (nil == dateString) {
+    if (dateString == nil) {
         dateString = @"Never";
     }
-    return [NSString stringWithFormat:@"Last Load: %@", dateString];
+    return [NSString stringWithFormat:@"Last Loaded: %@", dateString];
 }
 
 #pragma mark - Table View Delegates

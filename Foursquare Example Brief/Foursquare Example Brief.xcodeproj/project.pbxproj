@@ -40,6 +40,7 @@
 		C3A00D3518F3ECDD00EFC765 /* VenueCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A00D3018F3ECDD00EFC765 /* VenueCategory.m */; };
 		C3A00D3918F3F53B00EFC765 /* XDServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A00D3818F3F53B00EFC765 /* XDServer.m */; };
 		C3A00D3C18F40BD300EFC765 /* VenueLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A00D3B18F40BD300EFC765 /* VenueLocation.m */; };
+		C3A00D4118F4586B00EFC765 /* Explore.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A00D4018F4586B00EFC765 /* Explore.m */; };
 		EF6AEF2525C54DC4A65D5C6F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A6D2602DC144BC791FD1C95 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -106,6 +107,8 @@
 		C3A00D3818F3F53B00EFC765 /* XDServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDServer.m; sourceTree = "<group>"; };
 		C3A00D3A18F40BD300EFC765 /* VenueLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueLocation.h; sourceTree = "<group>"; };
 		C3A00D3B18F40BD300EFC765 /* VenueLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueLocation.m; sourceTree = "<group>"; };
+		C3A00D3F18F4586B00EFC765 /* Explore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Explore.h; sourceTree = "<group>"; };
+		C3A00D4018F4586B00EFC765 /* Explore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Explore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,6 +275,8 @@
 		C3A00D0618F3EAB400EFC765 /* CoreData Entities */ = {
 			isa = PBXGroup;
 			children = (
+				C3A00D3F18F4586B00EFC765 /* Explore.h */,
+				C3A00D4018F4586B00EFC765 /* Explore.m */,
 				C3A00D2B18F3ECDD00EFC765 /* Group.h */,
 				C3A00D2C18F3ECDD00EFC765 /* Group.m */,
 				C3A00D2D18F3ECDD00EFC765 /* Venue.h */,
@@ -430,6 +435,7 @@
 				C3575AC618F2FF3A002B2F33 /* XDUtilities.m in Sources */,
 				C3575A5518F28BD3002B2F33 /* XDAppDelegate.m in Sources */,
 				C3575AA818F2A882002B2F33 /* XDMapViewController.m in Sources */,
+				C3A00D4118F4586B00EFC765 /* Explore.m in Sources */,
 				C3A00D3318F3ECDD00EFC765 /* Group.m in Sources */,
 				C3A00D3C18F40BD300EFC765 /* VenueLocation.m in Sources */,
 				C3575A5118F28BD3002B2F33 /* main.m in Sources */,
@@ -579,7 +585,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Foursquare Example Brief/Foursquare Example Brief-Prefix.pch";
 				INFOPLIST_FILE = "Foursquare Example Brief/Foursquare Example Brief-Info.plist";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -595,7 +604,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Foursquare Example Brief/Foursquare Example Brief-Prefix.pch";
 				INFOPLIST_FILE = "Foursquare Example Brief/Foursquare Example Brief-Info.plist";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

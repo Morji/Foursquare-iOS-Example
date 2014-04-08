@@ -7,13 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Group.h"
+#import "Explore.h"
 
 @interface FoursquareModelObject : NSObject
 
-@property (assign, nonatomic) NSArray *groupObjects;
+@property (strong, nonatomic) Explore *exploreObject;
 
-// these are the venue objects from the "recommended" group
-@property (strong, nonatomic) NSArray *venueObjects;
 
 @end

@@ -19,6 +19,7 @@
 @property (nonatomic, copy) NSNumber * distance;
 @property (nonatomic, copy) NSNumber * lat;
 @property (nonatomic, copy) NSNumber * lng;
+
 @property (nonatomic, strong) Venue *venue;
 
 + (RKEntityMapping*)getEntityMappingForManagedObjectStore:(RKManagedObjectStore*) store;

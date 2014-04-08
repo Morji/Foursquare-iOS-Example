@@ -15,10 +15,10 @@
 @dynamic type;
 @dynamic name;
 @dynamic venues;
+@dynamic explore;
 
 + (RKEntityMapping*)getEntityMappingForManagedObjectStore:(RKManagedObjectStore*) store {
     RKEntityMapping *groupMapping = [RKEntityMapping mappingForEntityForName:@"Group" inManagedObjectStore:store];
-    groupMapping.identificationAttributes = @[ @"type" ];
     [groupMapping addAttributeMappingsFromArray:@[@"type", @"name"]];
 
     RKEntityMapping *venueMapping = [Venue getEntityMappingForManagedObjectStore:store];

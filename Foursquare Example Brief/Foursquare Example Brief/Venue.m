@@ -19,6 +19,7 @@
 @dynamic name;
 @dynamic categories;
 @dynamic location;
+@dynamic group;
 
 + (RKEntityMapping*)getEntityMappingForManagedObjectStore:(RKManagedObjectStore*) store {
     RKEntityMapping *venueMapping = [RKEntityMapping mappingForEntityForName:@"Venue" inManagedObjectStore:store];

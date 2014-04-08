@@ -19,6 +19,7 @@
 @property (nonatomic, copy) NSString * categoryId;
 @property (nonatomic, copy) NSString * shortName;
 @property (nonatomic, copy) NSNumber * primary;
+
 @property (nonatomic, strong) Venue *venue;
 
 + (RKEntityMapping*)getEntityMappingForManagedObjectStore:(RKManagedObjectStore*) store;

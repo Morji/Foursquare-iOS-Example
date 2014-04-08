@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Venue;
-@class RKObjectMapping;
+@class Venue, Explore;
 @class RKEntityMapping;
 @class RKManagedObjectStore;
 
@@ -20,16 +19,8 @@
 @property (nonatomic, copy) NSString * name;
 @property (nonatomic, strong) NSSet *venues;
 
+@property (nonatomic, strong) Explore *explore;
+
 + (RKEntityMapping*)getEntityMappingForManagedObjectStore:(RKManagedObjectStore*) store;
 
-
 @end
-
-/*@interface Group (CoreDataGeneratedAccessors)
-
-- (void)addVenuesObject:(Venue *)value;
-- (void)removeVenuesObject:(Venue *)value;
-- (void)addVenues:(NSSet *)values;
-- (void)removeVenues:(NSSet *)values;
-
-@end*/

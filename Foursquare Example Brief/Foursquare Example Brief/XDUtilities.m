@@ -39,4 +39,35 @@
     alert = nil;
 }
 
++ (NSString*) getTimeDifferenceBetweenDate: (NSDate*) first andDate:(NSDate*) second {
+    unsigned int unitFlags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *conversionInfo = [calendar components:unitFlags fromDate:first  toDate:second  options:0];
+    
+    NSInteger hours = [conversionInfo hour];
+    NSInteger minutes = [conversionInfo minute];
+    NSInteger seconds = [conversionInfo second];
+    
+    NSString *hourStr = @"";
+    NSString *minutesStr = @"";
+    NSString *secondsStr = @"";
+    NSString *temp;
+    
+    if (hours > 0) {
+        temp = hours > 1 ? @"hours" : @"hour";
+        hourStr = [NSString stringWithFormat:@"%d %@", hours, temp];
+    }
+    if (minutesStr > 0) {
+        temp = minutes > 1 ? @"minutes" : @"minute";
+        minutesStr = [NSString stringWithFormat:@"%d %@", minutes, temp];
+    }
+    if (secondsStr > 0) {
+        temp = seconds > 1 ? @"seconds" : @"second";
+        secondsStr = [NSString stringWithFormat:@"%d %@", seconds, temp];
+    }
+    
+    NSString *result = [NSString stringWithFormat:@"%@ %@ %@", hourStr, minutesStr, secondsStr];
+    return result;
+}
+
 @end

@@ -40,14 +40,14 @@
     RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
     objectManager.managedObjectStore = managedObjectStore;
     
-    RKMapping *mapping = [Group getEntityMappingForManagedObjectStore:managedObjectStore];
+    RKMapping *mapping = [Explore getEntityMappingForManagedObjectStore:managedObjectStore];
     
     // register mappings with the provider using a response descriptor
     RKResponseDescriptor *responseDescriptor =
     [RKResponseDescriptor responseDescriptorWithMapping:mapping
                                                  method:RKRequestMethodGET
                                             pathPattern:@"/v2/venues/explore"
-                                                keyPath:@"response.groups"
+                                                keyPath:@"response"
                                             statusCodes:[NSIndexSet indexSetWithIndex:200]];
     
     [objectManager addResponseDescriptor:responseDescriptor];
@@ -73,6 +73,7 @@
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     NSString *latLon = [NSString stringWithFormat:@"%g,%g", Lat, Lon];
     NSString *currDate = [XDUtilities getCurrentDateWithFormat:@"yyyyMMdd"];
+    NSString *queryType = @"coffee";
     
     NSDictionary *queryParams = @{@"ll" : latLon,
                                   @"client_id" : CLIENT_ID,
@@ -80,13 +81,15 @@
                                   @"limit": @"10",
                                   @"sortByDistance": @"1",
                                   @"radius": @"2000", // 2 km
+                                  @"section": queryType,
                                   @"v" : currDate};
     
-    [[RKObjectManager sharedManager] getObjectsAtPath:@"/v2/venues/explore"
+    RKObjectManager *objectManager = [RKObjectManager sharedManager];
+    [objectManager getObjectsAtPath:@"/v2/venues/explore"
                                            parameters:queryParams
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                                                   FoursquareModelObject *modelObject = [[FoursquareModelObject alloc] init];
-                                                  modelObject.groupObjects = mappingResult.array;
+                                                  modelObject.exploreObject = mappingResult.firstObject;
                                                   // callback
                                                   [delegate didRetrieveModelObject:modelObject];
                                                   [AFNetworkActivityIndicatorManager sharedManager].enabled = NO;

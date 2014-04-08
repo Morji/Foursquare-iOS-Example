@@ -8,13 +8,10 @@
 
 #import "FoursquareModelObject.h"
 
-
 @implementation FoursquareModelObject
 
-@synthesize groupObjects;
 
-
-- (void) setGroupObjects:(NSArray *)objects {
+/*- (void) setGroupObjects:(NSArray *)objects {
     groupObjects = objects;
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type==%@", @"Recommended Places"];
@@ -22,8 +19,7 @@
     assert([results count] == 1);
     
     Group *recommendedGroup = [results objectAtIndex:0];
-    //self.venueObjects = recommendedGroup.venues;
     self.venueObjects = [recommendedGroup.venues allObjects];
-}
+}*/
 
 @end

@@ -15,6 +15,7 @@
 
 + (NSString*) getCurrentDateWithFormat: (NSString *) format;
 
++ (NSString*) getTimeDifferenceBetweenDate: (NSDate*) first andDate:(NSDate*) second;
 
 // Displays a UIAlertView with the given title and message and an OK button
 +(void)showAlert:(NSString *)alertTitle withMessage:(NSString *)alertMessage;

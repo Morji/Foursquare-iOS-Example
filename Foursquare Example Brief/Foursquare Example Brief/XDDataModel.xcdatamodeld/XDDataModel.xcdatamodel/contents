@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13B42" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Explore" representedClassName="Explore" syncable="YES">
+        <attribute name="query" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Group" inverseName="explore" inverseEntity="Group" syncable="YES"/>
+    </entity>
     <entity name="Group" representedClassName="Group" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="venues" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Venue" syncable="YES"/>
+        <relationship name="explore" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Explore" inverseName="groups" inverseEntity="Explore" syncable="YES"/>
+        <relationship name="venues" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Venue" inverseName="group" inverseEntity="Venue" syncable="YES"/>
     </entity>
     <entity name="Venue" representedClassName="Venue" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="venueId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="VenueCategory" inverseName="venue" inverseEntity="VenueCategory" syncable="YES"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="venues" inverseEntity="Group" syncable="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VenueLocation" inverseName="venue" inverseEntity="VenueLocation" syncable="YES"/>
     </entity>
     <entity name="VenueCategory" representedClassName="VenueCategory" syncable="YES">
@@ -27,9 +33,10 @@
         <relationship name="venue" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Venue" inverseName="location" inverseEntity="Venue" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Group" positionX="-171" positionY="-207" width="128" height="88"/>
-        <element name="Venue" positionX="-0" positionY="-167" width="128" height="118"/>
-        <element name="VenueCategory" positionX="214" positionY="-36" width="128" height="118"/>
-        <element name="VenueLocation" positionX="189" positionY="-180" width="128" height="118"/>
+        <element name="Explore" positionX="-171" positionY="-309" width="128" height="75"/>
+        <element name="Group" positionX="-164" positionY="-202" width="128" height="103"/>
+        <element name="Venue" positionX="7" positionY="-153" width="128" height="135"/>
+        <element name="VenueCategory" positionX="207" positionY="-36" width="128" height="118"/>
+        <element name="VenueLocation" positionX="189" positionY="-207" width="128" height="118"/>
     </elements>
 </model>
