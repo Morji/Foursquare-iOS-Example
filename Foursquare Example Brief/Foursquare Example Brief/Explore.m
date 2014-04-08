@@ -14,7 +14,6 @@
 
 @dynamic query;
 @dynamic groups;
-@dynamic recommendedVenues;
 
 + (RKEntityMapping*)getEntityMappingForManagedObjectStore:(RKManagedObjectStore*) store {
     RKEntityMapping *exploreMapping = [RKEntityMapping mappingForEntityForName:@"Explore" inManagedObjectStore:store];

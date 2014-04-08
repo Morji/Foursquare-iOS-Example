@@ -24,9 +24,6 @@
 // All returned groups of venues - typically has only one
 @property (nonatomic, strong) NSSet *groups;
 
-// A collection of all recommended venues associated with this Explore Entity
-@property (nonatomic, strong) NSArray *recommendedVenues;
-
 + (RKEntityMapping*)getEntityMappingForManagedObjectStore:(RKManagedObjectStore*) store;
 
 @end
