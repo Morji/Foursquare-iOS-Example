@@ -1,5 +1,5 @@
 //
-//  VenueCategory.h
+//  Group.h
 //  Foursquare Example Brief
 //
 //  Created by Valentin Hinov on 08/04/2014.
@@ -10,17 +10,26 @@
 #import <CoreData/CoreData.h>
 
 @class Venue;
+@class RKObjectMapping;
 @class RKEntityMapping;
 @class RKManagedObjectStore;
 
-@interface VenueCategory : NSManagedObject
+@interface Group : NSManagedObject
 
+@property (nonatomic, copy) NSString * type;
 @property (nonatomic, copy) NSString * name;
-@property (nonatomic, copy) NSString * categoryId;
-@property (nonatomic, copy) NSString * shortName;
-@property (nonatomic, copy) NSNumber * primary;
-@property (nonatomic, strong) Venue *venue;
+@property (nonatomic, strong) NSSet *venues;
 
 + (RKEntityMapping*)getEntityMappingForManagedObjectStore:(RKManagedObjectStore*) store;
 
+
 @end
+
+/*@interface Group (CoreDataGeneratedAccessors)
+
+- (void)addVenuesObject:(Venue *)value;
+- (void)removeVenuesObject:(Venue *)value;
+- (void)addVenues:(NSSet *)values;
+- (void)removeVenues:(NSSet *)values;
+
+@end*/

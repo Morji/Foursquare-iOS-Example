@@ -8,7 +8,9 @@
 
 #import "VenueTableViewCell.h"
 #import "VenueRatingView.h"
-#import "VenueObject.h"
+#import "Venue.h"
+#import "VenueLocation.h"
+#import "VenueCategory.h"
 #import "XDUtilities.h"
 
 @interface VenueTableViewCell()
@@ -42,7 +44,7 @@
     // Configure the view for the selected state
 }
 
-- (void)setVenueObject:(VenueObject *) venueObject {
+- (void)setVenueObject:(Venue *) venueObject {
     nameLabel.text = venueObject.name;
     addressLabel.text = venueObject.location.address != nil ? venueObject.location.address : @"No Address Given";
     VenueCategory *mainCategory = [venueObject getMainCategory];

@@ -21,8 +21,9 @@
     NSArray *results = [groupObjects filteredArrayUsingPredicate:predicate];
     assert([results count] == 1);
     
-    GroupObject *recommendedGroup = [results objectAtIndex:0];
-    self.venueObjects = recommendedGroup.venues;
+    Group *recommendedGroup = [results objectAtIndex:0];
+    //self.venueObjects = recommendedGroup.venues;
+    self.venueObjects = [recommendedGroup.venues allObjects];
 }
 
 @end

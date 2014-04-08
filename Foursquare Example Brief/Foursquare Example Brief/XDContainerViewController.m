@@ -7,7 +7,6 @@
 //
 
 #import "XDContainerViewController.h"
-#import <Restkit/RestKit.h>
 
 #import "SWRevealViewController.h"
 #import "XDMapViewController.h"
@@ -15,16 +14,10 @@
 #import "FoursquareModelObject.h"
 #import "XDUtilities.h"
 
-// This view controller will be in charge of retrieving the data for both the map view and the list view
-// from the Foursquare API.
-
-#define CLIENT_ID @"UJ2SX3CVD4GRIEOLFPUANIFU51S4R55Y2XVU0K31YCMNP3VF"
-#define CLIENT_SECRET @"D4ROG5ZCWWYDDCU3E4A1CKZEN4N3MZFIKVCJR2YQYHWZAJAZ"
-#define BASE_URL @"https://api.foursquare.com"
-
 @interface XDContainerViewController ()
 
-@property (strong, nonatomic) FoursquareModelObject *model;
+@property (strong, nonatomic) XDServer *server;
+
 @property (strong, nonatomic) XDMapViewController *mapVC;
 @property (strong, nonatomic) XDVenueListViewController *tableVC;
 @property (weak, nonatomic) UIViewController *currentChildVC;
@@ -34,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
 - (IBAction)changeViewController:(id)sender;
+- (IBAction)refreshData:(id)sender;
 
 @end
 
@@ -42,7 +36,7 @@
 @synthesize currentChildVC;
 @synthesize childView;
 @synthesize mapVC, tableVC;
-@synthesize model;
+@synthesize server;
 
 - (void)addChildToThisContainerViewController:(UIViewController *)childController
 {
@@ -62,12 +56,9 @@
     
     // create view controllers and provide them with a pointer to the model
     mapVC = (XDMapViewController*)[[self storyboard] instantiateViewControllerWithIdentifier:@"XDMapViewController"];
-    tableVC = (XDVenueListViewController*)[[self storyboard] instantiateViewControllerWithIdentifier:@"XDTableViewController"];
+    tableVC = (XDVenueListViewController*)[[self storyboard] instantiateViewControllerWithIdentifier:@"XDVenueListViewController"];
     [self addChildToThisContainerViewController:mapVC];
     [self addChildToThisContainerViewController:tableVC];
-    
-    [mapVC setModelObject:model];
-    [tableVC setModelObject:model];
     
     currentChildVC = [self.childViewControllers objectAtIndex:self.segmentedControl.selectedSegmentIndex];
     [self.childView addSubview:currentChildVC.view];
@@ -77,9 +68,9 @@
 
 - (void)initDataModel {
     // initialise Foursquare API data
-    [self configureRestKit];
-    [self loadVenues];
-    model = [[FoursquareModelObject alloc] init];
+    server = [XDServer initWithDelegate:self];
+    [server configureRestKit];
+    //[server loadVenuesAtLatitude:DEFAULT_LATITUDE andLongitude:DEFAULT_LONGITUDE];
 }
 
 - (void)initRevealLogic {    
@@ -121,50 +112,18 @@
     currentChildVC = newChildVC;
 }
 
-#pragma mark - RestKit Actions
-- (void)configureRestKit {
-    // initialize AFNetworking HTTPClient
-    NSURL *baseURL = [NSURL URLWithString:BASE_URL];
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
-    
-    // initialize RestKit
-    RKObjectManager *objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
-    
-    RKObjectMapping *objectMapping = [GroupObject getObjectMapping];
-        
-    // register mappings with the provider using a response descriptor
-    RKResponseDescriptor *responseDescriptor =
-    [RKResponseDescriptor responseDescriptorWithMapping:objectMapping
-                                                 method:RKRequestMethodGET
-                                            pathPattern:@"/v2/venues/explore"
-                                                keyPath:@"response.groups"
-                                            statusCodes:[NSIndexSet indexSetWithIndex:200]];
-    
-    [objectManager addResponseDescriptor:responseDescriptor];
+- (IBAction)refreshData:(id)sender {
+    [server loadVenuesAtLatitude:DEFAULT_LATITUDE andLongitude:DEFAULT_LONGITUDE];
 }
 
-- (void)loadVenues {
-    NSString *latLon = [NSString stringWithFormat:@"%g,%g", DEFAULT_LATITUDE, DEFAULT_LONGITUDE];
-    NSString *currDate = [XDUtilities getCurrentDateWithFormat:@"yyyyMMdd"];
-    
-    NSDictionary *queryParams = @{@"ll" : latLon,
-                                  @"client_id" : CLIENT_ID,
-                                  @"client_secret" : CLIENT_SECRET,
-                                  @"limit": @"10",
-                                  @"sortByDistance": @"1",
-                                  @"radius": @"2000", // 2 km
-                                  @"v" : currDate};
-    
-    [[RKObjectManager sharedManager] getObjectsAtPath:@"/v2/venues/explore"
-                                           parameters:queryParams
-                                              success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                                                  model.groupObjects = mappingResult.array;
-                                                  [mapVC setModelObject:model];
-                                                  [tableVC setModelObject:model];
-                                              }
-                                              failure:^(RKObjectRequestOperation *operation, NSError *error) {
-                                                  NSLog(@"What do you mean by 'there is no coffee?': %@", error);
-                                              }];
+#pragma mark - Server Callbacks
+- (void) didRetrieveModelObject: (FoursquareModelObject *) modelObject {
+    [mapVC setModelObject:modelObject];
+    [tableVC refreshTable];
+}
+
+- (void) callFailedWithError: (NSString *) error {
+    [XDUtilities showAlert:@"Server Error" withMessage:error];
 }
 
 @end

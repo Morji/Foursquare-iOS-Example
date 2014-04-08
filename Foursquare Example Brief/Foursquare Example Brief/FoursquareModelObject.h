@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GroupObject.h"
+#import "Group.h"
 
 @interface FoursquareModelObject : NSObject
 

@@ -29,4 +29,14 @@
     return dateString;
 }
 
++ (void)showAlert:(NSString *)alertTitle withMessage:(NSString *)alertMessage{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:alertTitle
+                          message:alertMessage
+                          delegate:nil cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil];
+    [alert show];
+    alert = nil;
+}
+
 @end

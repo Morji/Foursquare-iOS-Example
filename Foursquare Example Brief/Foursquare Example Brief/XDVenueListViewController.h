@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FoursquareModelObject.h"
+#import <CoreData/CoreData.h>
 
-@interface XDVenueListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface XDVenueListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 
-- (void)setModelObject:(FoursquareModelObject *)modelObject;
+- (void)refreshTable;
 
 @end

@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "XDServer.h"
 // This view controller will contain the map and list view controllers
 
-@interface XDContainerViewController : UIViewController
+@interface XDContainerViewController : UIViewController<XDServerDelegate>
 
 @end

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C31A2A9618F30C3E005E5285 /* GroupObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C31A2A9518F30C3E005E5285 /* GroupObject.m */; };
 		C3575A4518F28BD3002B2F33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3575A4418F28BD3002B2F33 /* Foundation.framework */; };
 		C3575A4718F28BD3002B2F33 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3575A4618F28BD3002B2F33 /* CoreGraphics.framework */; };
 		C3575A4918F28BD3002B2F33 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3575A4818F28BD3002B2F33 /* UIKit.framework */; };
@@ -15,7 +14,6 @@
 		C3575A5118F28BD3002B2F33 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575A5018F28BD3002B2F33 /* main.m */; };
 		C3575A5518F28BD3002B2F33 /* XDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575A5418F28BD3002B2F33 /* XDAppDelegate.m */; };
 		C3575A5818F28BD3002B2F33 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3575A5618F28BD3002B2F33 /* Main_iPhone.storyboard */; };
-		C3575A5B18F28BD3002B2F33 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3575A5918F28BD3002B2F33 /* Main_iPad.storyboard */; };
 		C3575A5E18F28BD3002B2F33 /* XDContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575A5D18F28BD3002B2F33 /* XDContainerViewController.m */; };
 		C3575A6018F28BD3002B2F33 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3575A5F18F28BD3002B2F33 /* Images.xcassets */; };
 		C3575A6718F28BD3002B2F33 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3575A6618F28BD3002B2F33 /* XCTest.framework */; };
@@ -35,10 +33,13 @@
 		C3575AB218F2C3A9002B2F33 /* VenueRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575AB118F2C3A9002B2F33 /* VenueRatingView.m */; };
 		C3575AB618F2DC37002B2F33 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575AB518F2DC37002B2F33 /* SWRevealViewController.m */; };
 		C3575ABD18F2EACB002B2F33 /* FoursquareModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575ABC18F2EACB002B2F33 /* FoursquareModelObject.m */; };
-		C3575AC018F2ECB0002B2F33 /* VenueObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575ABF18F2ECB0002B2F33 /* VenueObject.m */; };
-		C3575AC318F2F9E7002B2F33 /* VenueLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575AC218F2F9E7002B2F33 /* VenueLocation.m */; };
 		C3575AC618F2FF3A002B2F33 /* XDUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575AC518F2FF3A002B2F33 /* XDUtilities.m */; };
-		C3575AC918F30107002B2F33 /* VenueCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575AC818F30107002B2F33 /* VenueCategory.m */; };
+		C3A00D0218F3E1D400EFC765 /* XDDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C3A00D0018F3E1D400EFC765 /* XDDataModel.xcdatamodeld */; };
+		C3A00D3318F3ECDD00EFC765 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A00D2C18F3ECDD00EFC765 /* Group.m */; };
+		C3A00D3418F3ECDD00EFC765 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A00D2E18F3ECDD00EFC765 /* Venue.m */; };
+		C3A00D3518F3ECDD00EFC765 /* VenueCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A00D3018F3ECDD00EFC765 /* VenueCategory.m */; };
+		C3A00D3918F3F53B00EFC765 /* XDServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A00D3818F3F53B00EFC765 /* XDServer.m */; };
+		C3A00D3C18F40BD300EFC765 /* VenueLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A00D3B18F40BD300EFC765 /* VenueLocation.m */; };
 		EF6AEF2525C54DC4A65D5C6F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A6D2602DC144BC791FD1C95 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -55,8 +56,6 @@
 /* Begin PBXFileReference section */
 		487DBE54555A44AA81B043D7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		8A6D2602DC144BC791FD1C95 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		C31A2A9418F30C3E005E5285 /* GroupObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupObject.h; sourceTree = "<group>"; };
-		C31A2A9518F30C3E005E5285 /* GroupObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupObject.m; sourceTree = "<group>"; };
 		C3575A4118F28BD3002B2F33 /* Foursquare Example Brief.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Foursquare Example Brief.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3575A4418F28BD3002B2F33 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C3575A4618F28BD3002B2F33 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -68,7 +67,6 @@
 		C3575A5318F28BD3002B2F33 /* XDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDAppDelegate.h; sourceTree = "<group>"; };
 		C3575A5418F28BD3002B2F33 /* XDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDAppDelegate.m; sourceTree = "<group>"; };
 		C3575A5718F28BD3002B2F33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		C3575A5A18F28BD3002B2F33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		C3575A5C18F28BD3002B2F33 /* XDContainerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDContainerViewController.h; sourceTree = "<group>"; };
 		C3575A5D18F28BD3002B2F33 /* XDContainerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XDContainerViewController.m; sourceTree = "<group>"; };
 		C3575A5F18F28BD3002B2F33 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -95,14 +93,19 @@
 		C3575AB518F2DC37002B2F33 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		C3575ABB18F2EACB002B2F33 /* FoursquareModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoursquareModelObject.h; sourceTree = "<group>"; };
 		C3575ABC18F2EACB002B2F33 /* FoursquareModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoursquareModelObject.m; sourceTree = "<group>"; };
-		C3575ABE18F2ECB0002B2F33 /* VenueObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueObject.h; sourceTree = "<group>"; };
-		C3575ABF18F2ECB0002B2F33 /* VenueObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueObject.m; sourceTree = "<group>"; };
-		C3575AC118F2F9E7002B2F33 /* VenueLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueLocation.h; sourceTree = "<group>"; };
-		C3575AC218F2F9E7002B2F33 /* VenueLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueLocation.m; sourceTree = "<group>"; };
 		C3575AC418F2FF3A002B2F33 /* XDUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDUtilities.h; sourceTree = "<group>"; };
 		C3575AC518F2FF3A002B2F33 /* XDUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDUtilities.m; sourceTree = "<group>"; };
-		C3575AC718F30107002B2F33 /* VenueCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueCategory.h; sourceTree = "<group>"; };
-		C3575AC818F30107002B2F33 /* VenueCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueCategory.m; sourceTree = "<group>"; };
+		C3A00D0118F3E1D400EFC765 /* XDDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XDDataModel.xcdatamodel; sourceTree = "<group>"; };
+		C3A00D2B18F3ECDD00EFC765 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		C3A00D2C18F3ECDD00EFC765 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		C3A00D2D18F3ECDD00EFC765 /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
+		C3A00D2E18F3ECDD00EFC765 /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
+		C3A00D2F18F3ECDD00EFC765 /* VenueCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueCategory.h; sourceTree = "<group>"; };
+		C3A00D3018F3ECDD00EFC765 /* VenueCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueCategory.m; sourceTree = "<group>"; };
+		C3A00D3718F3F53B00EFC765 /* XDServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDServer.h; sourceTree = "<group>"; };
+		C3A00D3818F3F53B00EFC765 /* XDServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDServer.m; sourceTree = "<group>"; };
+		C3A00D3A18F40BD300EFC765 /* VenueLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueLocation.h; sourceTree = "<group>"; };
+		C3A00D3B18F40BD300EFC765 /* VenueLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueLocation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,14 +178,13 @@
 		C3575A4A18F28BD3002B2F33 /* Foursquare Example Brief */ = {
 			isa = PBXGroup;
 			children = (
-				C3575ABA18F2EAAC002B2F33 /* Models */,
+				C3575ABA18F2EAAC002B2F33 /* Data */,
 				C3575AB318F2DC08002B2F33 /* Dependencies */,
 				C3575AAC18F2B82C002B2F33 /* Views */,
 				C3575AA518F2A801002B2F33 /* View Controllers */,
 				C3575A5318F28BD3002B2F33 /* XDAppDelegate.h */,
 				C3575A5418F28BD3002B2F33 /* XDAppDelegate.m */,
 				C3575A5618F28BD3002B2F33 /* Main_iPhone.storyboard */,
-				C3575A5918F28BD3002B2F33 /* Main_iPad.storyboard */,
 				C3575AC418F2FF3A002B2F33 /* XDUtilities.h */,
 				C3575AC518F2FF3A002B2F33 /* XDUtilities.m */,
 				C3575A5F18F28BD3002B2F33 /* Images.xcassets */,
@@ -254,21 +256,32 @@
 			name = Dependencies;
 			sourceTree = "<group>";
 		};
-		C3575ABA18F2EAAC002B2F33 /* Models */ = {
+		C3575ABA18F2EAAC002B2F33 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				C3A00D0618F3EAB400EFC765 /* CoreData Entities */,
+				C3A00D0018F3E1D400EFC765 /* XDDataModel.xcdatamodeld */,
 				C3575ABB18F2EACB002B2F33 /* FoursquareModelObject.h */,
 				C3575ABC18F2EACB002B2F33 /* FoursquareModelObject.m */,
-				C3575ABE18F2ECB0002B2F33 /* VenueObject.h */,
-				C3575ABF18F2ECB0002B2F33 /* VenueObject.m */,
-				C3575AC118F2F9E7002B2F33 /* VenueLocation.h */,
-				C3575AC218F2F9E7002B2F33 /* VenueLocation.m */,
-				C3575AC718F30107002B2F33 /* VenueCategory.h */,
-				C3575AC818F30107002B2F33 /* VenueCategory.m */,
-				C31A2A9418F30C3E005E5285 /* GroupObject.h */,
-				C31A2A9518F30C3E005E5285 /* GroupObject.m */,
+				C3A00D3718F3F53B00EFC765 /* XDServer.h */,
+				C3A00D3818F3F53B00EFC765 /* XDServer.m */,
 			);
-			name = Models;
+			name = Data;
+			sourceTree = "<group>";
+		};
+		C3A00D0618F3EAB400EFC765 /* CoreData Entities */ = {
+			isa = PBXGroup;
+			children = (
+				C3A00D2B18F3ECDD00EFC765 /* Group.h */,
+				C3A00D2C18F3ECDD00EFC765 /* Group.m */,
+				C3A00D2D18F3ECDD00EFC765 /* Venue.h */,
+				C3A00D2E18F3ECDD00EFC765 /* Venue.m */,
+				C3A00D2F18F3ECDD00EFC765 /* VenueCategory.h */,
+				C3A00D3018F3ECDD00EFC765 /* VenueCategory.m */,
+				C3A00D3A18F40BD300EFC765 /* VenueLocation.h */,
+				C3A00D3B18F40BD300EFC765 /* VenueLocation.m */,
+			);
+			name = "CoreData Entities";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,7 +370,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3575A5B18F28BD3002B2F33 /* Main_iPad.storyboard in Resources */,
 				C3575A6018F28BD3002B2F33 /* Images.xcassets in Resources */,
 				C3575A5818F28BD3002B2F33 /* Main_iPhone.storyboard in Resources */,
 				C3575A4F18F28BD3002B2F33 /* InfoPlist.strings in Resources */,
@@ -413,19 +425,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3A00D3418F3ECDD00EFC765 /* Venue.m in Sources */,
+				C3A00D3518F3ECDD00EFC765 /* VenueCategory.m in Sources */,
 				C3575AC618F2FF3A002B2F33 /* XDUtilities.m in Sources */,
 				C3575A5518F28BD3002B2F33 /* XDAppDelegate.m in Sources */,
 				C3575AA818F2A882002B2F33 /* XDMapViewController.m in Sources */,
-				C3575AC018F2ECB0002B2F33 /* VenueObject.m in Sources */,
+				C3A00D3318F3ECDD00EFC765 /* Group.m in Sources */,
+				C3A00D3C18F40BD300EFC765 /* VenueLocation.m in Sources */,
 				C3575A5118F28BD3002B2F33 /* main.m in Sources */,
-				C3575AC318F2F9E7002B2F33 /* VenueLocation.m in Sources */,
-				C31A2A9618F30C3E005E5285 /* GroupObject.m in Sources */,
+				C3A00D3918F3F53B00EFC765 /* XDServer.m in Sources */,
 				C3575AB618F2DC37002B2F33 /* SWRevealViewController.m in Sources */,
 				C3575A5E18F28BD3002B2F33 /* XDContainerViewController.m in Sources */,
+				C3A00D0218F3E1D400EFC765 /* XDDataModel.xcdatamodeld in Sources */,
 				C3575AAF18F2B85E002B2F33 /* VenueTableViewCell.m in Sources */,
 				C3575AB218F2C3A9002B2F33 /* VenueRatingView.m in Sources */,
 				C3575AAB18F2B430002B2F33 /* XDVenueListViewController.m in Sources */,
-				C3575AC918F30107002B2F33 /* VenueCategory.m in Sources */,
 				C3575ABD18F2EACB002B2F33 /* FoursquareModelObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -463,14 +477,6 @@
 				C3575A5718F28BD3002B2F33 /* Base */,
 			);
 			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		C3575A5918F28BD3002B2F33 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C3575A5A18F28BD3002B2F33 /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		C3575A6F18F28BD3002B2F33 /* InfoPlist.strings */ = {
@@ -575,6 +581,7 @@
 				INFOPLIST_FILE = "Foursquare Example Brief/Foursquare Example Brief-Info.plist";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -590,6 +597,7 @@
 				INFOPLIST_FILE = "Foursquare Example Brief/Foursquare Example Brief-Info.plist";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -665,6 +673,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C3A00D0018F3E1D400EFC765 /* XDDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C3A00D0118F3E1D400EFC765 /* XDDataModel.xcdatamodel */,
+			);
+			currentVersion = C3A00D0118F3E1D400EFC765 /* XDDataModel.xcdatamodel */;
+			path = XDDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C3575A3918F28BD3002B2F33 /* Project object */;
 }

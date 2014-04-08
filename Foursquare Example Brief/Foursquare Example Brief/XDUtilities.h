@@ -14,4 +14,9 @@
 + (float) metersToMilesFromNumber: (NSNumber *) metersNumber;
 
 + (NSString*) getCurrentDateWithFormat: (NSString *) format;
+
+
+// Displays a UIAlertView with the given title and message and an OK button
++(void)showAlert:(NSString *)alertTitle withMessage:(NSString *)alertMessage;
+
 @end

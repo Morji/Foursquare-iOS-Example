@@ -7,19 +7,21 @@
 //
 
 #import "XDVenueListViewController.h"
+#import <RestKit/RestKit.h>
 #import "VenueTableViewCell.h"
+#import "XDUtilities.h"
 
 @interface XDVenueListViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) FoursquareModelObject *model;
 
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
 @implementation XDVenueListViewController
 
-@synthesize model;
+@synthesize fetchedResultsController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,6 +36,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setupFetchedResultsController];
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,10 +45,31 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setModelObject:(FoursquareModelObject *)modelObject {
-    model = modelObject;
-    [self.tableView reloadData];
+- (void)setupFetchedResultsController {
     
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Venue"];
+    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"location.distance" ascending:YES];
+    fetchRequest.sortDescriptors = @[descriptor];
+    
+    // Setup fetched results
+    fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                        managedObjectContext:[RKManagedObjectStore defaultStore].mainQueueManagedObjectContext
+                                                                          sectionNameKeyPath:nil
+                                                                                   cacheName:nil]; // TODO - caching?
+    [fetchedResultsController setDelegate:self];
+    [self refreshTable];
+}
+
+- (void)refreshTable {
+    NSError *error = nil;
+    BOOL fetchSuccessful = [fetchedResultsController performFetch:&error];
+    NSAssert([[fetchedResultsController fetchedObjects] count], @"Fetching unsuccessful");
+    if (!fetchSuccessful) {
+        [XDUtilities showAlert:@"Venue List Error" withMessage:error.description];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"LastUpdatedAt"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table View Creation
@@ -55,19 +79,33 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return model != nil ? [model.venueObjects count] : 0;
+    id<NSFetchedResultsSectionInfo> sectionInfo = [fetchedResultsController.sections objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"VenueCell";
     VenueTableViewCell *cell = (VenueTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    [cell setVenueObject:[model.venueObjects objectAtIndex:indexPath.row]];
-    
+    VenueObject *venue = [fetchedResultsController objectAtIndexPath:indexPath];
+    [cell setVenueObject:venue];
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSDate *lastUpdatedAt = [[NSUserDefaults standardUserDefaults] objectForKey:@"LastUpdatedAt"];
+    NSString *dateString = [NSDateFormatter localizedStringFromDate:lastUpdatedAt dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterMediumStyle];
+    if (nil == dateString) {
+        dateString = @"Never";
+    }
+    return [NSString stringWithFormat:@"Last Load: %@", dateString];
 }
 
 #pragma mark - Table View Delegates
 
 
+#pragma mark - NSFetchedResultsControllerDelegate methods
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView reloadData];
+}
 @end

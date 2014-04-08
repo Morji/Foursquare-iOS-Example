@@ -14,7 +14,7 @@
 @interface XDMapViewController ()
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
-@property (weak, nonatomic) FoursquareModelObject *model;
+@property (strong, nonatomic) FoursquareModelObject *model;
 
 @end
 
