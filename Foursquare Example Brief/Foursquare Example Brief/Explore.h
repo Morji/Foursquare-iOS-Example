@@ -17,8 +17,7 @@
 
 @interface Explore : NSManagedObject
 
-// Query type - one of food, drinks, coffee, shops, arts, outdoors, sights, trending, specials, nextVenues
-// or a custom specified type
+// Query type - one of food, drinks, coffee, shops, arts, outdoors, sights, trending, specials or nextVenues
 @property (nonatomic, strong) NSString *query;
 
 // All returned groups of venues - typically has only one

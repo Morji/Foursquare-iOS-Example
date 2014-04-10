@@ -26,6 +26,6 @@
 + (id)initWithDelegate:(id)delegate;
 
 - (void)configureRestKit;
-- (void)loadVenuesAtLatitude:(double)Lat andLongitude:(double)Lon;
+- (void)loadVenuesAtLatitude:(double)Lat andLongitude:(double)Lon withQueryType:(NSString *) queryType;
 
 @end

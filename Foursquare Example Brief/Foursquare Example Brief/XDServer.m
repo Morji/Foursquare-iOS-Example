@@ -69,11 +69,10 @@
     managedObjectStore.managedObjectCache = [[RKInMemoryManagedObjectCache alloc] initWithManagedObjectContext:managedObjectStore.persistentStoreManagedObjectContext];
 }
 
-- (void)loadVenuesAtLatitude:(double)Lat andLongitude:(double)Lon {
+- (void)loadVenuesAtLatitude:(double)Lat andLongitude:(double)Lon withQueryType:(NSString *) queryType {
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     NSString *latLon = [NSString stringWithFormat:@"%g,%g", Lat, Lon];
     NSString *currDate = [XDUtilities getCurrentDateWithFormat:@"yyyyMMdd"];
-    NSString *queryType = @"coffee";
     
     NSDictionary *queryParams = @{@"ll" : latLon,
                                   @"client_id" : CLIENT_ID,

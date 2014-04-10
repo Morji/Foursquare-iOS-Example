@@ -113,7 +113,8 @@
 }
 
 - (IBAction)refreshData:(id)sender {
-    [server loadVenuesAtLatitude:DEFAULT_LATITUDE andLongitude:DEFAULT_LONGITUDE];
+    [server loadVenuesAtLatitude:DEFAULT_LATITUDE andLongitude:DEFAULT_LONGITUDE withQueryType:@"coffee"];
+    [server loadVenuesAtLatitude:DEFAULT_LATITUDE andLongitude:DEFAULT_LONGITUDE withQueryType:@"food"];
 }
 
 #pragma mark - Server Callbacks
