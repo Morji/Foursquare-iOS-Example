@@ -15,9 +15,9 @@
 
 @interface Venue : NSManagedObject
 
-@property (nonatomic, copy) NSNumber * rating;
-@property (nonatomic, copy) NSString * name;
-@property (nonatomic, copy) NSString * venueId;
+@property (nonatomic, copy) NSNumber *rating;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *venueId;
 @property (nonatomic, strong) NSSet *categories;
 @property (nonatomic, strong) VenueLocation *location;
 
@@ -25,5 +25,6 @@
 
 + (RKEntityMapping*)getEntityMappingForManagedObjectStore:(RKManagedObjectStore*) store;
 - (VenueCategory*)getMainCategory;
+- (NSString *)getQueryType;
 
 @end

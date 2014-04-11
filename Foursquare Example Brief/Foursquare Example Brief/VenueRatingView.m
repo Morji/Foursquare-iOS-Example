@@ -38,7 +38,7 @@
 
 - (void)initRatingThresholds {
     if (self.ratingArray == nil)
-        self.ratingArray = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Venue Rating"];
+        self.ratingArray = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Venue rating"];
 }
 
 - (void)setRating:(NSNumber*) score {

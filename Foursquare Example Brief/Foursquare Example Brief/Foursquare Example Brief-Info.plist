@@ -2,7 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Venue Rating</key>
+	<key>Foursquare queries</key>
+	<array>
+		<string>coffee</string>
+		<string>food</string>
+	</array>
+	<key>Default map info</key>
+	<dict>
+		<key>Mile reach</key>
+		<real>1.5</real>
+		<key>Longitude</key>
+		<real>-3.214507</real>
+		<key>Latitude</key>
+		<real>55.947367</real>
+	</dict>
+	<key>Venue rating</key>
 	<array>
 		<integer>4</integer>
 		<integer>6</integer>

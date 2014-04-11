@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FoursquareModelObject.h"
+#import <MapKit/MapKit.h>
 
-#define DEFAULT_LATITUDE 55.947367
-#define DEFAULT_LONGITUDE -3.214507
-
-@interface XDMapViewController : UIViewController
+@interface XDMapViewController : UIViewController <MKMapViewDelegate>
 
 - (void)centerMapOnDefaultCoords;
-- (void)setModelObject:(FoursquareModelObject *)modelObject;
+
+- (void)addVenues:(NSArray *)venuesArray;
+
+- (CLLocationCoordinate2D) getUserLocation;
 
 @end

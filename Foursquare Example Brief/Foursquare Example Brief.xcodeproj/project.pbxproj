@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C34122B618F7E6CA000F3003 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34122B518F7E6CA000F3003 /* AddressBook.framework */; };
 		C3575A4518F28BD3002B2F33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3575A4418F28BD3002B2F33 /* Foundation.framework */; };
 		C3575A4718F28BD3002B2F33 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3575A4618F28BD3002B2F33 /* CoreGraphics.framework */; };
 		C3575A4918F28BD3002B2F33 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3575A4818F28BD3002B2F33 /* UIKit.framework */; };
@@ -32,7 +33,6 @@
 		C3575AAF18F2B85E002B2F33 /* VenueTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575AAE18F2B85E002B2F33 /* VenueTableViewCell.m */; };
 		C3575AB218F2C3A9002B2F33 /* VenueRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575AB118F2C3A9002B2F33 /* VenueRatingView.m */; };
 		C3575AB618F2DC37002B2F33 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575AB518F2DC37002B2F33 /* SWRevealViewController.m */; };
-		C3575ABD18F2EACB002B2F33 /* FoursquareModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575ABC18F2EACB002B2F33 /* FoursquareModelObject.m */; };
 		C3575AC618F2FF3A002B2F33 /* XDUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = C3575AC518F2FF3A002B2F33 /* XDUtilities.m */; };
 		C3A00D0218F3E1D400EFC765 /* XDDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C3A00D0018F3E1D400EFC765 /* XDDataModel.xcdatamodeld */; };
 		C3A00D3318F3ECDD00EFC765 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A00D2C18F3ECDD00EFC765 /* Group.m */; };
@@ -57,6 +57,7 @@
 /* Begin PBXFileReference section */
 		487DBE54555A44AA81B043D7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		8A6D2602DC144BC791FD1C95 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C34122B518F7E6CA000F3003 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		C3575A4118F28BD3002B2F33 /* Foursquare Example Brief.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Foursquare Example Brief.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3575A4418F28BD3002B2F33 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C3575A4618F28BD3002B2F33 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -92,8 +93,6 @@
 		C3575AB118F2C3A9002B2F33 /* VenueRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueRatingView.m; sourceTree = "<group>"; };
 		C3575AB418F2DC37002B2F33 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		C3575AB518F2DC37002B2F33 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-		C3575ABB18F2EACB002B2F33 /* FoursquareModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoursquareModelObject.h; sourceTree = "<group>"; };
-		C3575ABC18F2EACB002B2F33 /* FoursquareModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoursquareModelObject.m; sourceTree = "<group>"; };
 		C3575AC418F2FF3A002B2F33 /* XDUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDUtilities.h; sourceTree = "<group>"; };
 		C3575AC518F2FF3A002B2F33 /* XDUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDUtilities.m; sourceTree = "<group>"; };
 		C3A00D0118F3E1D400EFC765 /* XDDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XDDataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -116,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C34122B618F7E6CA000F3003 /* AddressBook.framework in Frameworks */,
 				C3575A8918F28F48002B2F33 /* MobileCoreServices.framework in Frameworks */,
 				C3575A8718F28F3E002B2F33 /* Security.framework in Frameworks */,
 				C3575AA218F2933E002B2F33 /* MapKit.framework in Frameworks */,
@@ -164,6 +164,7 @@
 		C3575A4318F28BD3002B2F33 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C34122B518F7E6CA000F3003 /* AddressBook.framework */,
 				C3575AA118F2933E002B2F33 /* MapKit.framework */,
 				C3575A8818F28F48002B2F33 /* MobileCoreServices.framework */,
 				C3575A8618F28F3E002B2F33 /* Security.framework */,
@@ -264,8 +265,6 @@
 			children = (
 				C3A00D0618F3EAB400EFC765 /* CoreData Entities */,
 				C3A00D0018F3E1D400EFC765 /* XDDataModel.xcdatamodeld */,
-				C3575ABB18F2EACB002B2F33 /* FoursquareModelObject.h */,
-				C3575ABC18F2EACB002B2F33 /* FoursquareModelObject.m */,
 				C3A00D3718F3F53B00EFC765 /* XDServer.h */,
 				C3A00D3818F3F53B00EFC765 /* XDServer.m */,
 			);
@@ -446,7 +445,6 @@
 				C3575AAF18F2B85E002B2F33 /* VenueTableViewCell.m in Sources */,
 				C3575AB218F2C3A9002B2F33 /* VenueRatingView.m in Sources */,
 				C3575AAB18F2B430002B2F33 /* XDVenueListViewController.m in Sources */,
-				C3575ABD18F2EACB002B2F33 /* FoursquareModelObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

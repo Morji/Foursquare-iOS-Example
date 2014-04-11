@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import <MapKit/MapKit.h>
 
 @class Venue;
 @class RKEntityMapping;
 @class RKManagedObjectStore;
 
-@interface VenueLocation : NSManagedObject
+@interface VenueLocation : NSManagedObject <MKAnnotation>
 
 @property (nonatomic, copy) NSString * address;
 @property (nonatomic, copy) NSNumber * distance;
@@ -23,5 +24,7 @@
 @property (nonatomic, strong) Venue *venue;
 
 + (RKEntityMapping*)getEntityMappingForManagedObjectStore:(RKManagedObjectStore*) store;
+
+- (MKMapItem*)mapItem;
 
 @end

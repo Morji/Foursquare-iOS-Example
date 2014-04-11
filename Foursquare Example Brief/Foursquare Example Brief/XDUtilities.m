@@ -8,6 +8,9 @@
 
 #import "XDUtilities.h"
 
+#define METERS_PER_MILE 1609.344f
+#define MILES_PER_METER 0.00062137f
+
 @implementation XDUtilities
 
 + (float) metersToMilesFromNumber: (NSNumber *) metersNumber {
@@ -15,7 +18,15 @@
 }
 
 + (float) metersToMilesFromFloat: (float) meters {
-    return meters * 0.00062137f;
+    return meters * MILES_PER_METER;
+}
+
++ (float) milesToMetersFromNumber: (NSNumber *) milesNumber {
+    return [self milesToMetersFromFloat:[milesNumber floatValue]];
+}
+
++ (int) milesToMetersFromFloat: (float) miles {
+    return miles * METERS_PER_MILE;
 }
 
 + (NSString*) getCurrentDateWithFormat: (NSString *) format {

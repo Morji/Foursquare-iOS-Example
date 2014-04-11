@@ -7,10 +7,11 @@
 //
 
 #import "Venue.h"
+#import <RestKit/CoreData.h>
+#import "Group.h"
+#import "Explore.h"
 #import "VenueCategory.h"
 #import "VenueLocation.h"
-#import <RestKit/CoreData.h>
-
 
 @implementation Venue
 
@@ -57,6 +58,12 @@
     }];
     assert([results count] == 1);
     return [results anyObject]; // should just be one object
+}
+
+-(NSString *)getQueryType {
+    NSString* query = self.group.explore.queryType;
+    
+    return query;
 }
 
 @end

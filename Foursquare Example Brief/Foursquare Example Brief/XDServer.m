@@ -9,7 +9,7 @@
 #import "XDServer.h"
 #import <Restkit/RestKit.h>
 
-#import "FoursquareModelObject.h"
+#import "Explore.h"
 #import "XDUtilities.h"
 
 #define CLIENT_ID @"UJ2SX3CVD4GRIEOLFPUANIFU51S4R55Y2XVU0K31YCMNP3VF"
@@ -75,17 +75,18 @@
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
 }
 
-- (void)loadVenuesAtLatitude:(double)Lat andLongitude:(double)Lon withQueryType:(NSString *) queryType {
+- (void)loadVenuesAtLatitude:(double)Lat andLongitude:(double)Lon withinMileRadius:(float)miles withQueryType:(NSString *) queryType {
     [[AFNetworkActivityIndicatorManager sharedManager] incrementActivityCount];
     NSString *latLon = [NSString stringWithFormat:@"%g,%g", Lat, Lon];
     NSString *currDate = [XDUtilities getCurrentDateWithFormat:@"yyyyMMdd"];
-    
+    int meters = [XDUtilities milesToMetersFromFloat:miles];
+    NSString *metersStr = [NSString stringWithFormat:@"%d", meters];
     NSDictionary *queryParams = @{@"ll" : latLon,
                                   @"client_id" : CLIENT_ID,
                                   @"client_secret" : CLIENT_SECRET,
-                                  @"limit": @"10",
+                                  @"limit": @"15",
                                   @"sortByDistance": @"1",
-                                  @"radius": @"2000", // 2 km
+                                  @"radius": metersStr, 
                                   @"section": queryType,
                                   @"v" : currDate};
     
@@ -93,10 +94,9 @@
     [objectManager getObjectsAtPath:@"/v2/venues/explore"
                                            parameters:queryParams
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                                                  FoursquareModelObject *modelObject = [[FoursquareModelObject alloc] init];
-                                                  modelObject.exploreObject = mappingResult.firstObject;
+                                                  Explore *exploreObject = mappingResult.firstObject;
                                                   // callback
-                                                  [delegate didRetrieveModelObject:modelObject];
+                                                  [delegate didRetrieveExploreObject:exploreObject];
                                                   [[AFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
 
                                               }

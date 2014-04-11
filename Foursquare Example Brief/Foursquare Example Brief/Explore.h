@@ -18,12 +18,14 @@
 @interface Explore : NSManagedObject
 
 // Query type - one of food, drinks, coffee, shops, arts, outdoors, sights, trending, specials or nextVenues
-@property (nonatomic, strong) NSString *query;
+// This is the passed "section" to the api/venues/explore call
+@property (nonatomic, strong) NSString *queryType;
 
 // All returned groups of venues - typically has only one
 @property (nonatomic, strong) NSSet *groups;
 
 + (RKEntityMapping*)getEntityMappingForManagedObjectStore:(RKManagedObjectStore*) store;
+- (NSArray*) getRecommendedVenues;
 
 @end
 

@@ -10,10 +10,10 @@
 
 // Performs all calls to the Venues API
 
-@class FoursquareModelObject;
+@class Explore;
 
 @protocol XDServerDelegate <NSObject>
-- (void) didRetrieveModelObject: (FoursquareModelObject *) modelObject;
+- (void) didRetrieveExploreObject: (Explore *) exploreObject;
 - (void) callFailedWithError: (NSString *) error;
 @end
 
@@ -26,6 +26,6 @@
 + (id)initWithDelegate:(id)delegate;
 
 - (void)configureRestKit;
-- (void)loadVenuesAtLatitude:(double)Lat andLongitude:(double)Lon withQueryType:(NSString *) queryType;
+- (void)loadVenuesAtLatitude:(double)Lat andLongitude:(double)Lon withinMileRadius:(float) miles withQueryType:(NSString *) queryType;
 
 @end

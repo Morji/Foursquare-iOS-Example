@@ -11,7 +11,9 @@
 #import "VenueTableViewCell.h"
 #import "XDUtilities.h"
 
-@interface XDVenueListViewController ()
+@interface XDVenueListViewController () {
+    UIRefreshControl *refreshControl;
+}
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -36,6 +38,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setupPullToRefresh];
     [self setupFetchedResultsController];
 }
 
@@ -44,9 +47,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setupPullToRefresh {
+    refreshControl = [[UIRefreshControl alloc] init];
+    
+    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    [refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refreshControl];
+}
+
 - (void)setupFetchedResultsController {
+    NSDictionary *mapDictionary = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Default map info"];
+    float mileReach = [[mapDictionary objectForKey:@"Mile reach"] floatValue];
+    int meterReach = [XDUtilities milesToMetersFromFloat:mileReach];
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Venue"];
-    NSPredicate *categoryPredicate = [NSPredicate predicateWithFormat:@"group.explore.query == %@", @"coffee"];
+    NSPredicate *categoryPredicate = [NSPredicate predicateWithFormat:@"group.explore.queryType == %@ AND location.distance <= %d", @"coffee", meterReach];
     fetchRequest.predicate = categoryPredicate;
     NSSortDescriptor *distanceDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"location.distance" ascending:YES];
     fetchRequest.sortDescriptors = @[distanceDescriptor];
@@ -58,6 +72,10 @@
                                                                                    cacheName:nil]; // TODO - caching?
     [fetchedResultsController setDelegate:self];
     [self refreshTable];
+}
+
+- (void)pullToRefresh {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Reload Venues" object:nil];
 }
 
 - (void)refreshTable {
@@ -72,6 +90,7 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         [self.tableView reloadData];
     }
+    [refreshControl endRefreshing];
 }
 
 #pragma mark - Table View Creation
@@ -109,6 +128,7 @@
 #pragma mark - NSFetchedResultsControllerDelegate methods
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableView reloadData];
+    [self refreshTable];
+    
 }
 @end

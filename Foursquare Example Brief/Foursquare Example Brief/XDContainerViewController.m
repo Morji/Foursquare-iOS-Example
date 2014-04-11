@@ -11,7 +11,7 @@
 #import "SWRevealViewController.h"
 #import "XDMapViewController.h"
 #import "XDVenueListViewController.h"
-#import "FoursquareModelObject.h"
+#import "Explore.h"
 #import "XDUtilities.h"
 
 @interface XDContainerViewController ()
@@ -53,8 +53,26 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     [self initDataModel];
+    [self initViewControllers];
+    [self initRevealLogic];
     
-    // create view controllers and provide them with a pointer to the model
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData:) name:@"Reload Venues" object:nil];
+}
+
+- (void)initDataModel {
+    // initialise Foursquare API data
+    server = [XDServer initWithDelegate:self];
+    [server configureRestKit];
+    /*Explore* exploreObject = [self getStoredExploreObject];
+    if (exploreObject == nil) {
+        [self refreshData:self];
+    } else {
+        [self didRetrieveExploreObject:exploreObject];
+    }*/
+}
+
+- (void)initViewControllers {
+    // create view controllers
     mapVC = (XDMapViewController*)[[self storyboard] instantiateViewControllerWithIdentifier:@"XDMapViewController"];
     tableVC = (XDVenueListViewController*)[[self storyboard] instantiateViewControllerWithIdentifier:@"XDVenueListViewController"];
     [self addChildToThisContainerViewController:mapVC];
@@ -62,15 +80,14 @@
     
     currentChildVC = [self.childViewControllers objectAtIndex:self.segmentedControl.selectedSegmentIndex];
     [self.childView addSubview:currentChildVC.view];
-    
-    [self initRevealLogic];
 }
 
-- (void)initDataModel {
-    // initialise Foursquare API data
-    server = [XDServer initWithDelegate:self];
-    [server configureRestKit];
-    //[server loadVenuesAtLatitude:DEFAULT_LATITUDE andLongitude:DEFAULT_LONGITUDE];
+// Returns stored Explore object from database or nil if there isn't one
+- (Explore*) getStoredExploreObject {
+    //NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    //NSEntityDescription *entity = [NSEntityDescription entityForName:@"Explore" inManagedObjectContext:managedObjectContext];
+    //[fetchRequest setEntity:entity];
+    return nil;
 }
 
 - (void)initRevealLogic {    
@@ -80,6 +97,10 @@
     
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Reload Venues" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,14 +134,32 @@
 }
 
 - (IBAction)refreshData:(id)sender {
-    [server loadVenuesAtLatitude:DEFAULT_LATITUDE andLongitude:DEFAULT_LONGITUDE withQueryType:@"coffee"];
-    [server loadVenuesAtLatitude:DEFAULT_LATITUDE andLongitude:DEFAULT_LONGITUDE withQueryType:@"food"];
+    NSDictionary *mapDictionary = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Default map info"];
+    double defaultLatitude = [[mapDictionary objectForKey:@"Latitude"] doubleValue];
+    double defaultLongitude = [[mapDictionary objectForKey:@"Longitude"] doubleValue];
+    float mileReach = [[mapDictionary objectForKey:@"Mile reach"] floatValue];
+    NSArray *queries = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Foursquare queries"];
+    
+    CLLocationCoordinate2D userLoc = [mapVC getUserLocation];
+    double latitude, longitude;
+    if (userLoc.latitude == 0 && userLoc.longitude == 0) {
+        latitude = defaultLatitude;
+        longitude = defaultLongitude;
+    } else {
+        latitude = userLoc.latitude;
+        longitude = userLoc.longitude;
+    }
+    
+    for (NSString *query in queries) {
+        [server loadVenuesAtLatitude:latitude andLongitude:longitude withinMileRadius:mileReach withQueryType:query];
+    }
 }
 
 #pragma mark - Server Callbacks
-- (void) didRetrieveModelObject: (FoursquareModelObject *) modelObject {
-    [mapVC setModelObject:modelObject];
+- (void) didRetrieveExploreObject: (Explore *) exploreObject {
     [tableVC refreshTable];
+    NSArray *recommendedVenues = [exploreObject getRecommendedVenues];
+    [mapVC addVenues:recommendedVenues];
 }
 
 - (void) callFailedWithError: (NSString *) error {

@@ -13,6 +13,9 @@
 + (float) metersToMilesFromFloat: (float) meters;
 + (float) metersToMilesFromNumber: (NSNumber *) metersNumber;
 
++ (int) milesToMetersFromFloat: (float) miles;
++ (float) milesToMetersFromNumber: (NSNumber *) milesNumber;
+
 + (NSString*) getCurrentDateWithFormat: (NSString *) format;
 
 + (NSString*) getTimeDifferenceBetweenDate: (NSDate*) first andDate:(NSDate*) second;
