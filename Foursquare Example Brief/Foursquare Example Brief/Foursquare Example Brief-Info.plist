@@ -16,12 +16,6 @@
 		<key>Latitude</key>
 		<real>55.947367</real>
 	</dict>
-	<key>Venue rating</key>
-	<array>
-		<integer>4</integer>
-		<integer>6</integer>
-		<integer>10</integer>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>

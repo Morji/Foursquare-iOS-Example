@@ -14,6 +14,8 @@
 @property (strong, nonatomic) UIColor* color;
 @property (strong, nonatomic) NSArray *ratingArray;
 
+#define MAX_VENUE_RATING 10.0f
+
 @end
 
 @implementation VenueRatingView
@@ -43,14 +45,8 @@
 
 - (void)setRating:(NSNumber*) score {
     float scoreValue = [score floatValue];
-    if (scoreValue < [self.ratingArray[0] floatValue]) {
-        self.color = [UIColor redColor];
-    } else if (scoreValue > [self.ratingArray[0] floatValue] && scoreValue < [self.ratingArray[1] floatValue]) {
-        self.color = [UIColor colorWithRed:1.0f green:0.69f blue:0.0f alpha:1.0f];
-    } else if (scoreValue > [self.ratingArray[1] floatValue] && scoreValue < [self.ratingArray[2] floatValue]) {
-        self.color = [UIColor colorWithRed:0.0f green:0.89f blue:0.0f alpha:1.0f];
-    }   
-    
+    float colorValue = scoreValue / MAX_VENUE_RATING;
+    self.color = [UIColor colorWithRed:(1.0f - colorValue) green:colorValue blue:0.0f alpha:1.0f];
     self.ratingLabel.text = [NSString stringWithFormat:@"%.1f", scoreValue];
     // force redraw
     [self setNeedsDisplay];
