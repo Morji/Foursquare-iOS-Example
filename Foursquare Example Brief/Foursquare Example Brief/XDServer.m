@@ -27,6 +27,10 @@
     return server;
 }
 
+- (void) dealloc {
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = NO;
+}
+
 - (void)configureRestKit {
     // initialize AFNetworking HTTPClient
     NSURL *baseURL = [NSURL URLWithString:BASE_URL];
@@ -67,10 +71,12 @@
     
     // Configure a managed object cache to ensure we do not create duplicate objects
     managedObjectStore.managedObjectCache = [[RKInMemoryManagedObjectCache alloc] initWithManagedObjectContext:managedObjectStore.persistentStoreManagedObjectContext];
+    
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
 }
 
 - (void)loadVenuesAtLatitude:(double)Lat andLongitude:(double)Lon withQueryType:(NSString *) queryType {
-    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+    [[AFNetworkActivityIndicatorManager sharedManager] incrementActivityCount];
     NSString *latLon = [NSString stringWithFormat:@"%g,%g", Lat, Lon];
     NSString *currDate = [XDUtilities getCurrentDateWithFormat:@"yyyyMMdd"];
     
@@ -91,13 +97,13 @@
                                                   modelObject.exploreObject = mappingResult.firstObject;
                                                   // callback
                                                   [delegate didRetrieveModelObject:modelObject];
-                                                  [AFNetworkActivityIndicatorManager sharedManager].enabled = NO;
+                                                  [[AFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
 
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                   NSLog(@"Call failed with error: %@", error);
                                                   [delegate callFailedWithError:[error description]];
-                                                  [AFNetworkActivityIndicatorManager sharedManager].enabled = NO;
+                                                  [[AFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
                                               }];
 }
 
