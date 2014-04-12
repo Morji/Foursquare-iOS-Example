@@ -41,6 +41,7 @@
 		C3A00D3918F3F53B00EFC765 /* XDServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A00D3818F3F53B00EFC765 /* XDServer.m */; };
 		C3A00D3C18F40BD300EFC765 /* VenueLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A00D3B18F40BD300EFC765 /* VenueLocation.m */; };
 		C3A00D4118F4586B00EFC765 /* Explore.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A00D4018F4586B00EFC765 /* Explore.m */; };
+		C3A3DD5418F9CEE10048E670 /* XDSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A3DD5318F9CEE10048E670 /* XDSettingsTableViewController.m */; };
 		EF6AEF2525C54DC4A65D5C6F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A6D2602DC144BC791FD1C95 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +109,8 @@
 		C3A00D3B18F40BD300EFC765 /* VenueLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueLocation.m; sourceTree = "<group>"; };
 		C3A00D3F18F4586B00EFC765 /* Explore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Explore.h; sourceTree = "<group>"; };
 		C3A00D4018F4586B00EFC765 /* Explore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Explore.m; sourceTree = "<group>"; };
+		C3A3DD5218F9CEE10048E670 /* XDSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDSettingsTableViewController.h; sourceTree = "<group>"; };
+		C3A3DD5318F9CEE10048E670 /* XDSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDSettingsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +239,8 @@
 				C3575AA718F2A882002B2F33 /* XDMapViewController.m */,
 				C3575AA918F2B430002B2F33 /* XDVenueListViewController.h */,
 				C3575AAA18F2B430002B2F33 /* XDVenueListViewController.m */,
+				C3A3DD5218F9CEE10048E670 /* XDSettingsTableViewController.h */,
+				C3A3DD5318F9CEE10048E670 /* XDSettingsTableViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -433,6 +438,7 @@
 				C3A00D3518F3ECDD00EFC765 /* VenueCategory.m in Sources */,
 				C3575AC618F2FF3A002B2F33 /* XDUtilities.m in Sources */,
 				C3575A5518F28BD3002B2F33 /* XDAppDelegate.m in Sources */,
+				C3A3DD5418F9CEE10048E670 /* XDSettingsTableViewController.m in Sources */,
 				C3575AA818F2A882002B2F33 /* XDMapViewController.m in Sources */,
 				C3A00D4118F4586B00EFC765 /* Explore.m in Sources */,
 				C3A00D3318F3ECDD00EFC765 /* Group.m in Sources */,

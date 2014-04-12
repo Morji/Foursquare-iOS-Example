@@ -59,16 +59,23 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData:) name:@"Reload Venues" object:nil];
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Reload Venues" object:nil];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.mapVC centerMapOnDefaultCoords];
+}
+
 - (void)initDataModel {
     // initialise Foursquare API data
     server = [XDServer initWithDelegate:self];
     [server configureRestKit];
-    /*Explore* exploreObject = [self getStoredExploreObject];
-    if (exploreObject == nil) {
-        [self refreshData:self];
-    } else {
-        [self didRetrieveExploreObject:exploreObject];
-    }*/
 }
 
 - (void)initViewControllers {
@@ -82,14 +89,6 @@
     [self.childView addSubview:currentChildVC.view];
 }
 
-// Returns stored Explore object from database or nil if there isn't one
-- (Explore*) getStoredExploreObject {
-    //NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    //NSEntityDescription *entity = [NSEntityDescription entityForName:@"Explore" inManagedObjectContext:managedObjectContext];
-    //[fetchRequest setEntity:entity];
-    return nil;
-}
-
 - (void)initRevealLogic {    
     // Set the side bar button action. When it's tapped, it'll show up the sidebar.
     _sidebarButton.target = self.revealViewController;
@@ -97,19 +96,6 @@
     
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-}
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Reload Venues" object:nil];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [self.mapVC centerMapOnDefaultCoords];
 }
 
 #pragma mark - IB Actions

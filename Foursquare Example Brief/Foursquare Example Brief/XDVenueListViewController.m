@@ -25,8 +25,7 @@
 
 @synthesize fetchedResultsController;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -34,17 +33,33 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupPullToRefresh];
     [self setupFetchedResultsController];
+    
+    // register for key changes of the Show Unrated Venues key
+    [[NSUserDefaults standardUserDefaults] addObserver:self
+                                            forKeyPath:@"Show Unrated Venues"
+                                               options:NSKeyValueObservingOptionNew
+                                               context:NULL];
+    
+}
+
+- (void)dealloc {
+     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:@"Show Unrated Venues"];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    //Dispose of any resources that can be recreated.
+}
+
+- (void)observeValueForKeyPath:(NSString *) keyPath ofObject:(id) object change:(NSDictionary *) change context:(void *) context {
+    if([keyPath isEqual:@"Show Unrated Venues"]) {
+        [self setupFetchedResultsController];
+    }
 }
 
 - (void)setupPullToRefresh {
@@ -58,10 +73,21 @@
 - (void)setupFetchedResultsController {
     NSDictionary *mapDictionary = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Default map info"];
     float mileReach = [[mapDictionary objectForKey:@"Mile reach"] floatValue];
+    
+    // Show venues within the mile reach specified in the info.plist
     int meterReach = [XDUtilities milesToMetersFromFloat:mileReach];
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Venue"];
-    NSPredicate *categoryPredicate = [NSPredicate predicateWithFormat:@"location.distance <= %d", meterReach];
-    fetchRequest.predicate = categoryPredicate;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"location.distance <= %d", meterReach];
+    
+    // Check if unrated venues can be shown
+    BOOL showUnratedVenues = [[NSUserDefaults standardUserDefaults] boolForKey:@"Show Unrated Venues"];
+    if (!showUnratedVenues) {
+        NSPredicate *unratedPredicate = [NSPredicate predicateWithFormat:@"rating >= 0.0"];
+        predicate = [NSCompoundPredicate andPredicateWithSubpredicates:[NSArray arrayWithObjects:predicate, unratedPredicate, nil]];
+    }
+    
+    // Sort venues by distance
+    fetchRequest.predicate = predicate;
     NSSortDescriptor *distanceDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"location.distance" ascending:YES];
     fetchRequest.sortDescriptors = @[distanceDescriptor];
     
