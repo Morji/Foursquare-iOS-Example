@@ -53,7 +53,6 @@
     float miles = [XDUtilities metersToMilesFromNumber:venueObject.location.distance];
     NSString *milesStr = [NSString stringWithFormat:@"%.1f", miles];
     distanceLabel.text = [NSString stringWithFormat:@"(%@ %@)", milesStr, NSLocalizedString(@"miles", nil)];
-    
     [ratingView setRating:venueObject.rating];
 }
 

@@ -60,7 +60,7 @@
     float mileReach = [[mapDictionary objectForKey:@"Mile reach"] floatValue];
     int meterReach = [XDUtilities milesToMetersFromFloat:mileReach];
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Venue"];
-    NSPredicate *categoryPredicate = [NSPredicate predicateWithFormat:@"group.explore.queryType == %@ AND location.distance <= %d", @"coffee", meterReach];
+    NSPredicate *categoryPredicate = [NSPredicate predicateWithFormat:@"location.distance <= %d", meterReach];
     fetchRequest.predicate = categoryPredicate;
     NSSortDescriptor *distanceDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"location.distance" ascending:YES];
     fetchRequest.sortDescriptors = @[distanceDescriptor];

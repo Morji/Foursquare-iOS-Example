@@ -12,7 +12,7 @@
     </entity>
     <entity name="Venue" representedClassName="Venue" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="rating" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="rating" optional="YES" attributeType="Float" defaultValueString="-1" syncable="YES"/>
         <attribute name="venueId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="VenueCategory" inverseName="venue" inverseEntity="VenueCategory" syncable="YES"/>
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="venues" inverseEntity="Group" syncable="YES"/>
