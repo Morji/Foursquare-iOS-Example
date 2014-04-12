@@ -15,6 +15,7 @@
 @property (strong, nonatomic) NSArray *ratingArray;
 
 #define MAX_VENUE_RATING 10.0f
+#define RADIANS_PER_DEGREE 0.0174532925f
 
 @end
 
@@ -62,14 +63,45 @@
 }
 
 - (void)drawCircleInRect:(CGRect)rect inContext:(CGContextRef)context {
-    CGFloat lineWidth = 1;
-    CGRect borderRect = CGRectInset(rect, lineWidth * 0.5, lineWidth * 0.5);
-    CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 1.0);
-    CGContextSetFillColorWithColor(context, self.color.CGColor);
-    CGContextSetLineWidth(context, lineWidth);
-    CGContextFillEllipseInRect (context, borderRect);
-    CGContextStrokeEllipseInRect(context, borderRect);
+    CGFloat radius = rect.size.width/2;
+    CGFloat start = 0 * RADIANS_PER_DEGREE;
+    CGFloat end = 360 * RADIANS_PER_DEGREE;
+    
+    CGPoint startPoint = CGPointMake(0, 0);
+    CGPoint endPoint = CGPointMake(0, rect.size.height);
+    
+    //define grayscale gradient
+    CGFloat cc[] =
+    {
+        .70,.7,.7,1,  //r,g,b,a of color1, as a percentage of full on.
+        .4,.4,.4,1,  //r,g,b,a of color2, as a percentage of full on.
+    };
+    
+    //set up our gradient
+    CGGradientRef gradient;
+    CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
+    gradient = CGGradientCreateWithColorComponents(rgb, cc, NULL, sizeof(cc)/(sizeof(cc[0])*4));
+    CGColorSpaceRelease(rgb);
+    
+    //draw the gradient on the sphere
+    CGContextSaveGState(context);
+    CGContextBeginPath(context);
+    CGContextAddArc(context, rect.size.width/2, rect.size.height/2, radius, start, end, 0);
+    CGContextClosePath(context);
+    CGContextClip(context);
+    
+    CGContextAddRect(context, rect);
+    CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, kCGGradientDrawsBeforeStartLocation);
+    CGGradientRelease(gradient);
+    
+    //now add our primary color.
+    UIColor *color = self.color;
+    [color setFill];
+    CGContextSetBlendMode(context, kCGBlendModeColor);
+    CGContextAddRect(context, rect);
     CGContextFillPath(context);
+    
+    CGContextRestoreGState(context);
 }
 
 @end
