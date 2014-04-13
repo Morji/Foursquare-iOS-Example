@@ -151,8 +151,6 @@
 - (void) didRetrieveExploreObject: (Explore *) exploreObject forQueryType:(NSString *)queryType {
     callsReturned++;
     if (callsReturned >= callsMade) {
-        //[tableVC refreshTable];
-        //[mapVC refreshAnnotations];
         callsReturned = 0;
     }
 }

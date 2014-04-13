@@ -11,6 +11,7 @@
 
 @interface XDSettingsTableViewController ()
 - (IBAction)showUnratedVenuesChanged:(id)sender;
+@property (weak, nonatomic) IBOutlet UISwitch *unratedVenuesSwitch;
 
 @end
 
@@ -32,6 +33,8 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.unratedVenuesSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"Show Unrated Venues"];
 }
 
 - (void)didReceiveMemoryWarning {

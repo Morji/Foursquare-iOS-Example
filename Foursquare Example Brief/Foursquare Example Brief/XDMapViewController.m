@@ -46,7 +46,7 @@
 - (void)setupFetchedResultsController {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"VenueLocation"];
     
-    // Sort venues by distance - no effect for mapview but we need a sort descriptor
+    // Sort venues by distance
     NSSortDescriptor *distanceDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"distance" ascending:YES];
     fetchRequest.sortDescriptors = @[distanceDescriptor];
     
@@ -54,7 +54,7 @@
     fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                    managedObjectContext:[RKManagedObjectStore defaultStore].mainQueueManagedObjectContext
                                                                      sectionNameKeyPath:nil
-                                                                              cacheName:nil]; // TODO - caching?
+                                                                              cacheName:@"MapViewCache"]; // TODO - caching?
     [fetchedResultsController setDelegate:self];
     
     [self refreshAnnotations];

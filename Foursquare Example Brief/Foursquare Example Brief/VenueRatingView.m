@@ -50,6 +50,7 @@
         self.color = nil;
         self.ratingLabel.text = @"N/A";
     } else {
+        // color goes from bright green to red depending on venue rating
         float colorValue = scoreValue / MAX_VENUE_RATING;
         self.color = [UIColor colorWithRed:(1.0f - colorValue) green:colorValue blue:0.0f alpha:1.0f];
         self.ratingLabel.text = [NSString stringWithFormat:@"%.1f", scoreValue];

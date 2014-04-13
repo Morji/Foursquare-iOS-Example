@@ -56,6 +56,7 @@
     
     [objectManager addResponseDescriptor:responseDescriptor];
     
+    
     /**
      Complete Core Data stack initialization
      */
@@ -77,6 +78,7 @@
 
 - (void)loadVenuesAtLatitude:(double)Lat andLongitude:(double)Lon withinMileRadius:(float)miles withQueryType:(NSString *) queryType {
     [[AFNetworkActivityIndicatorManager sharedManager] incrementActivityCount];
+    
     NSString *latLon = [NSString stringWithFormat:@"%g,%g", Lat, Lon];
     NSString *currDate = [XDUtilities getCurrentDateWithFormat:@"yyyyMMdd"];
     int meters = [XDUtilities milesToMetersFromFloat:miles];
@@ -91,6 +93,7 @@
                                   @"v" : currDate};
     
     RKObjectManager *objectManager = [RKObjectManager sharedManager];
+
     [objectManager getObjectsAtPath:@"/v2/venues/explore"
                                            parameters:queryParams
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
