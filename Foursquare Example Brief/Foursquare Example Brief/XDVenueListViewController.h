@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
 
-@interface XDVenueListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
+@interface XDVenueListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 - (void)refreshTable;
 

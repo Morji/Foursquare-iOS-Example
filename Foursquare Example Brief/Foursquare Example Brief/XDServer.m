@@ -84,7 +84,7 @@
     NSDictionary *queryParams = @{@"ll" : latLon,
                                   @"client_id" : CLIENT_ID,
                                   @"client_secret" : CLIENT_SECRET,
-                                  @"limit": @"15",
+                                  @"limit": @"10",
                                   @"sortByDistance": @"1",
                                   @"radius": metersStr, 
                                   @"section": queryType,
@@ -96,13 +96,13 @@
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                                                   Explore *exploreObject = mappingResult.firstObject;
                                                   // callback
-                                                  [delegate didRetrieveExploreObject:exploreObject];
+                                                  [delegate didRetrieveExploreObject:exploreObject forQueryType:queryType];
                                                   [[AFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
 
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                   NSLog(@"Call failed with error: %@", error);
-                                                  [delegate callFailedWithError:[error description]];
+                                                  [delegate callFailedWithError:[error description] forQueryType:queryType];
                                                   [[AFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
                                               }];
 }

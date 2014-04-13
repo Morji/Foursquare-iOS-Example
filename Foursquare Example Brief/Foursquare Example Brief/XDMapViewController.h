@@ -13,7 +13,7 @@
 
 - (void)centerMapOnDefaultCoords;
 
-- (void)addVenues:(NSArray *)venuesArray;
+- (void) refreshAnnotations;
 
 - (CLLocationCoordinate2D) getUserLocation;
 

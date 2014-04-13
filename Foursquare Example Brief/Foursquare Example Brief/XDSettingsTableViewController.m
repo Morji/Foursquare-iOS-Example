@@ -7,6 +7,7 @@
 //
 
 #import "XDSettingsTableViewController.h"
+#import "SWRevealViewController.h"
 
 @interface XDSettingsTableViewController ()
 - (IBAction)showUnratedVenuesChanged:(id)sender;
@@ -15,8 +16,7 @@
 
 @implementation XDSettingsTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -24,8 +24,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -35,8 +34,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -47,4 +45,11 @@
     [[NSUserDefaults standardUserDefaults] setBool:showUnratedVenues forKey:@"Show Unrated Venues"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
+
+#pragma mark - Table View Delegates
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.revealViewController revealToggleAnimated:YES];
+}
+
 @end

@@ -14,7 +14,10 @@
 #import "Explore.h"
 #import "XDUtilities.h"
 
-@interface XDContainerViewController ()
+@interface XDContainerViewController () {
+    NSUInteger callsMade;
+    NSUInteger callsReturned;
+}
 
 @property (strong, nonatomic) XDServer *server;
 
@@ -55,6 +58,7 @@
     [self initDataModel];
     [self initViewControllers];
     [self initRevealLogic];
+    [self refreshData:self];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData:) name:@"Reload Venues" object:nil];
 }
@@ -93,7 +97,7 @@
     // Set the side bar button action. When it's tapped, it'll show up the sidebar.
     _sidebarButton.target = self.revealViewController;
     _sidebarButton.action = @selector(revealToggle:);
-    
+
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 }
@@ -136,19 +140,28 @@
         longitude = userLoc.longitude;
     }
     
+    callsMade = [queries count];
+    
     for (NSString *query in queries) {
         [server loadVenuesAtLatitude:latitude andLongitude:longitude withinMileRadius:mileReach withQueryType:query];
     }
 }
 
 #pragma mark - Server Callbacks
-- (void) didRetrieveExploreObject: (Explore *) exploreObject {
-    [tableVC refreshTable];
-    NSArray *recommendedVenues = [exploreObject getRecommendedVenues];
-    [mapVC addVenues:recommendedVenues];
+- (void) didRetrieveExploreObject: (Explore *) exploreObject forQueryType:(NSString *)queryType {
+    callsReturned++;
+    if (callsReturned >= callsMade) {
+        //[tableVC refreshTable];
+        //[mapVC refreshAnnotations];
+        callsReturned = 0;
+    }
 }
 
-- (void) callFailedWithError: (NSString *) error {
+- (void) callFailedWithError: (NSString *) error forQueryType:(NSString *)queryType {
+    callsReturned++;
+    if (callsReturned >= callsMade) {
+        callsReturned = 0;
+    }
     [XDUtilities showAlert:@"Server Error" withMessage:error];
 }
 

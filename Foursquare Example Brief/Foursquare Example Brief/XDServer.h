@@ -13,8 +13,8 @@
 @class Explore;
 
 @protocol XDServerDelegate <NSObject>
-- (void) didRetrieveExploreObject: (Explore *) exploreObject;
-- (void) callFailedWithError: (NSString *) error;
+- (void) didRetrieveExploreObject: (Explore *) exploreObject forQueryType:(NSString *)queryType;
+- (void) callFailedWithError: (NSString *) error forQueryType:(NSString *)queryType;
 @end
 
 @interface XDServer : NSObject {

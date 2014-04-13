@@ -7,17 +7,22 @@
 //
 
 #import "XDMapViewController.h"
-#import <MapKit/MapKit.h>
+#import <RestKit/CoreData.h>
 #import "XDUtilities.h"
 #import "VenueLocation.h"
 #import "Venue.h"
 
-@interface XDMapViewController ()
+@interface XDMapViewController () <NSFetchedResultsControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
 @implementation XDMapViewController
+
+@synthesize fetchedResultsController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -30,12 +35,42 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setupFetchedResultsController];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)setupFetchedResultsController {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"VenueLocation"];
+    
+    // Sort venues by distance - no effect for mapview but we need a sort descriptor
+    NSSortDescriptor *distanceDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"distance" ascending:YES];
+    fetchRequest.sortDescriptors = @[distanceDescriptor];
+    
+    // Setup fetched results
+    fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                   managedObjectContext:[RKManagedObjectStore defaultStore].mainQueueManagedObjectContext
+                                                                     sectionNameKeyPath:nil
+                                                                              cacheName:nil]; // TODO - caching?
+    [fetchedResultsController setDelegate:self];
+    
+    [self refreshAnnotations];
+}
+
+- (void) refreshAnnotations {
+    NSError *error = nil;
+    BOOL fetchSuccessful = [fetchedResultsController performFetch:&error];
+    if (!fetchSuccessful) {
+        [XDUtilities showAlert:@"Venue Map Error" withMessage:error.description];
+    } else {
+        [self.mapView removeAnnotations:self.mapView.annotations];
+        [self.mapView addAnnotations:[fetchedResultsController fetchedObjects]];
+    }
+}
+
 
 - (void)centerMapOnDefaultCoords {
     NSDictionary *mapDictionary = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Default map info"];
@@ -49,13 +84,6 @@
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, meterReach, meterReach);
     [_mapView setRegion:viewRegion animated:YES];
     
-}
-
-- (void)addVenues:(NSArray *)venuesArray {
-    for (Venue *venue in venuesArray) {
-        VenueLocation *location = venue.location;
-        [_mapView addAnnotation:location];
-    }
 }
      
 - (CLLocationCoordinate2D) getUserLocation {
@@ -99,6 +127,43 @@
     return nil;
 }
 
+#pragma mark - NSFetchedResultsControllerDelegate methods
+- (void)controller:(NSFetchedResultsController *)controller
+   didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath
+     forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath
+{
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+            [self fetchedResultsChangeInsert:anObject];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [self fetchedResultsChangeDelete:anObject];
+            break;
+        case NSFetchedResultsChangeUpdate:
+            [self fetchedResultsChangeUpdate:anObject];
+            break;
+        case NSFetchedResultsChangeMove:
+            // do nothing
+            break;
+            
+        default:
+            break;
+    }
+}
 
+- (void)fetchedResultsChangeInsert:(VenueLocation *) venueLocation {
+    [self.mapView addAnnotation:venueLocation];
+}
+
+- (void)fetchedResultsChangeDelete:(VenueLocation *) venueLocation {
+    [self.mapView removeAnnotation:venueLocation];
+}
+
+- (void)fetchedResultsChangeUpdate:(VenueLocation *) venueLocation {
+    [self fetchedResultsChangeDelete:venueLocation];
+    [self fetchedResultsChangeInsert:venueLocation];
+}
 
 @end

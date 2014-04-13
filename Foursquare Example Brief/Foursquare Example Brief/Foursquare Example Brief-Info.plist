@@ -2,20 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Foursquare queries</key>
-	<array>
-		<string>coffee</string>
-		<string>food</string>
-	</array>
-	<key>Default map info</key>
-	<dict>
-		<key>Mile reach</key>
-		<real>1.5</real>
-		<key>Longitude</key>
-		<real>-3.214507</real>
-		<key>Latitude</key>
-		<real>55.947367</real>
-	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -36,6 +22,20 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
+	<key>Default map info</key>
+	<dict>
+		<key>Latitude</key>
+		<real>55.947367</real>
+		<key>Longitude</key>
+		<real>-3.2145069999999998</real>
+		<key>Mile reach</key>
+		<real>1.5</real>
+	</dict>
+	<key>Foursquare queries</key>
+	<array>
+		<string>coffee</string>
+		<string>food</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIMainStoryboardFile</key>
@@ -49,8 +49,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

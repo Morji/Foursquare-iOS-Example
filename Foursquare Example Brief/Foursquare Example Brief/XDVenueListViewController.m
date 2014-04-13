@@ -7,11 +7,11 @@
 //
 
 #import "XDVenueListViewController.h"
-#import <RestKit/RestKit.h>
+#import <RestKit/CoreData.h>
 #import "VenueTableViewCell.h"
 #import "XDUtilities.h"
 
-@interface XDVenueListViewController () {
+@interface XDVenueListViewController () <NSFetchedResultsControllerDelegate> {
     UIRefreshControl *refreshControl;
 }
 
